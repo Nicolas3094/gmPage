@@ -1,0 +1,33 @@
+<main class="mainIndex">
+    
+    <ng-container *ngFor="let indexElem of elementsList">
+
+        <a class="buttonIndex" (click)="handleButtoIndex(indexElem)">
+            <div class="indexTitle">
+                ({{indexElem.index}})
+            </div>
+            <div class="year">
+                {{indexElem.year}}
+            </div>
+            <div class="title">
+                {{indexElem.title}}
+            </div>
+            <div class="keywords">
+                <ng-container *ngIf="indexElem.keywords!=null">
+                    {{indexElem.keywords}}
+                </ng-container>
+            </div>
+        </a>
+       
+    </ng-container>
+</main>
+
+<div class="overlay" *ngIf="popup && currentIndexElement!=null">
+    <div class="popup">
+        <h2>Here i am</h2>
+        <a class="close" (click)="popup = false">&times;</a>
+        <div class="content">
+        you have selected this event {{currentIndexElement.index}}
+        </div>
+    </div>
+</div>

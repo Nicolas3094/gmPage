@@ -1,0 +1,22 @@
+<header>
+    <div class="detalles">
+        <p *ngFor="let detalle of headerInfo.detalles">
+            {{detalle}}
+        </p>
+    </div>
+    <div class="listado">
+        <p *ngFor="let listado of headerInfo.listado">
+            {{listado}}
+        </p>
+    </div>
+
+
+    <div class="menu">
+        <a class="index" routerLink='/index' routerLinkActive="active-link" >{{headerInfo.menu[0]}}</a> / 
+        <a class="images" routerLink='/images' routerLinkActive="active-link">{{headerInfo.menu[1]}}</a>
+    </div>
+    
+    <div class="logo">
+        <img src="/logo.png" >
+    </div>
+</header>

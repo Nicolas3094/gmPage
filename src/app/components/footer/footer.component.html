@@ -1,0 +1,58 @@
+<footer>
+    <div class="aliados">
+        <div class="titulo">
+            {{footerInfo.aliados[0].title}}
+        </div>
+
+        <div class="empty"></div>
+
+        <div class="section1">
+            <p> {{footerInfo.aliados[1].title}} </p>
+            <a href="{{footerInfo.aliados[1].url}}">{{footerInfo.aliados[1].url}}</a>
+        </div>
+        <div class="section2">
+            <p> {{footerInfo.aliados[2].title}}</p>
+            <a href="{{footerInfo.aliados[2].url}}">{{footerInfo.aliados[2].url}}</a>    
+        </div>
+
+        <div class="empty"></div>
+    </div>
+
+    <div class="clientes">
+
+        <div class ="title">
+            <p>{{footerInfo.clientes.title}}</p>
+        </div>
+
+        <div class="empty"></div>
+
+        <div class="info">
+            <div class="text">
+                <p>{{clientsInfo}}.</p>
+            </div>
+            <div class="clientImages">
+                <img *ngFor="let clientImg of footerInfo.clientes.clients" src="{{clientImg.url}}">
+            </div>            
+        </div>
+    </div>
+
+    <div class="nosotros">
+
+        <div class="title">
+            {{footerInfo.nosotros.title}}
+        </div>
+
+
+        <div class="contact">
+            <p *ngFor="let contacto of footerInfo.nosotros.contact">
+                <a href="{{contacto.url}}">{{contacto.title}}</a>
+            </p> 
+        </div>
+
+
+        <div class="descripcion">
+            <p>{{footerInfo.nosotros.description}}</p>
+        </div>
+    </div>
+    
+</footer>

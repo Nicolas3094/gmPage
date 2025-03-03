@@ -30,6 +30,7 @@ export class IndiceComponent {
       window.open(indexElement.url, "_blanks");
     }
   }
+
   hanleUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

@@ -6,11 +6,18 @@ $fifth: calc(100/5)*(1%);
     src: url("../public/Ingram-Mono-Regular.otf") format('truetype');
 }
 
+.instagram-video-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
 
 html,
 body {
     max-width: 100%;
     overflow-x: hidden;
+    display: flex;
+        flex-direction: column;
 }
 
 p {
@@ -53,6 +60,7 @@ body {
     font-family: 'Ingram Mono Regular', sans-serif;
     text-transform: uppercase;
 }
+
 
 header {
     display: grid;
@@ -190,6 +198,7 @@ footer {
 main {
     padding-top: 10px;
     padding-bottom: 10px;
+    overflow-y: auto;
 }
 
 .mainIndex {
@@ -276,4 +285,37 @@ main {
 .popup .content {
     max-height: 30%;
     overflow: auto;
+}
+
+/* Estilos para tablets (vertical y horizontal) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    body {
+        background-color: #e0e0e0;
+    }
+
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+    body {
+        background-color: #d0d0d0;
+    }
+
+    .container {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
+/* Estilos para móviles (vertical y horizontal) */
+@media (max-width: 767px) {
+    body {
+        font-size: 9px;
+    }
+
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+    body {
+        font-size: 9px;
+    }
 }

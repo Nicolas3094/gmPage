@@ -27,7 +27,8 @@
         <h2>Here i am</h2>
         <a class="close" (click)="popup = false">&times;</a>
         <div class="content">
-        you have selected this event {{currentIndexElement.index}}
+            <iframe [src]='currentIndexElement.url | safeUrl' width="640" height="360" frameborder="1" allow="autoplay; fullscreen"
+                allowfullscreen></iframe>
         </div>
     </div>
 </div>

@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { IndexElement } from '../../models/index-element.model';
 import { MAIN_INDEX_LIST } from '../../app.config';
 import { NgFor, NgIf } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SafeUrlPipe } from '../../safe-url.pipe';
 
 @Component({
   selector: 'app-indice',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, SafeUrlPipe],
   templateUrl: './indice.component.html'
 })
 export class IndiceComponent {
@@ -13,10 +15,22 @@ export class IndiceComponent {
   elementsList:Array<IndexElement> = MAIN_INDEX_LIST;
 
   currentIndexElement?: IndexElement;
+  sanitizer: DomSanitizer;
+
+  constructor(sanitizer: DomSanitizer) {
+    this.sanitizer = sanitizer;
+  }
 
   handleButtoIndex(indexElement:IndexElement){
     console.log(indexElement.index);
-    this.popup=true;
     this.currentIndexElement = indexElement;
+    if (indexElement.type == "vimeo") {
+      this.popup = true;
+    } else {
+      window.open(indexElement.url, "_blanks");
+    }
+  }
+  hanleUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

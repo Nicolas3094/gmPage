@@ -45,7 +45,7 @@
 
         <div class="contact">
             <p *ngFor="let contacto of footerInfo.nosotros.contact">
-                <a href="{{contacto.url}}">{{contacto.title}}</a>
+                <a (click)="handleContact(contacto.url )">{{contacto.title}}</a>
             </p> 
         </div>
 

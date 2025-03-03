@@ -24,7 +24,7 @@ export class IndiceComponent {
   handleButtoIndex(indexElement:IndexElement){
     console.log(indexElement.index);
     this.currentIndexElement = indexElement;
-    if (indexElement.type == "vimeo") {
+    if (indexElement.type === "vimeo" || indexElement.type === "youtube") {
       this.popup = true;
     } else {
       window.open(indexElement.url, "_blanks");
@@ -32,5 +32,10 @@ export class IndiceComponent {
   }
   hanleUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  close() {
+    this.popup = false;
+    this.currentIndexElement = undefined;
   }
 }

@@ -1,4 +1,4 @@
 export interface Linkinfo {
-    title:String;
-    url?:String;
+    title: string;
+    url?: string;
 }

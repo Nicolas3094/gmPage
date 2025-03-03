@@ -22,10 +22,10 @@
     </ng-container>
 </main>
 
-<div class="overlay" *ngIf="popup && currentIndexElement!=null">
+<div class="overlay" *ngIf="popup && currentIndexElement!=null" (click)="close()">
     <div class="popup">
-        <h2>Here i am</h2>
-        <a class="close" (click)="popup = false">&times;</a>
+        <h2> </h2>
+        <a class="close" (click)="close()">&times;</a>
         <div class="content">
             <iframe [src]='currentIndexElement.url | safeUrl' width="640" height="360" frameborder="1" allow="autoplay; fullscreen"
                 allowfullscreen></iframe>

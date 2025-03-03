@@ -249,19 +249,13 @@ main {
 
 .popup {
     margin: 70px auto;
-    padding: 20px;
-    background: #fff;
     border-radius: 5px;
-    width: 30%;
+    width: fit-content;
     position: relative;
     transition: all 5s ease-in-out;
 }
 
-.popup h2 {
-    margin-top: 0;
-    color: #333;
-    font-family: Tahoma, Arial, sans-serif;
-}
+
 
 .popup .close {
     position: absolute;
@@ -271,7 +265,7 @@ main {
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
 }
 
 .popup .close:hover {
@@ -282,11 +276,4 @@ main {
 .popup .content {
     max-height: 30%;
     overflow: auto;
-}
-
-@media screen and (max-width: 700px) {
-
-    .popup {
-        width: 70%;
-    }
 }

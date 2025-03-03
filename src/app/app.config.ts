@@ -56,7 +56,7 @@ export const FOOTER: FooterInfo = {
   },
   nosotros: {
     title: "G.M. ART NEW MEDIA",
-    contact: [{ title: "CONTACTAR", url: "" }, { title: "INSTAGRAM", url: "" }],
+    contact: [{ title: "CONTACTAR", url: "https://mail.google.com/mail/?view=cm&fs=1&to=gmartnewmedia@gmail.com" }, { title: "INSTAGRAM", url: "https://www.instagram.com/gmartnewmedia/" }],
     description: "Somos una organización pionera que fusiona arte y tecnología para crear experiencias únicas en un contexto social. Nos enfocamos en brindar servicios de alta calidad con tecnología de punta y conceptos creativos para clientes que buscan lo extraordinario." +
       "En GM Art New Media, creemos que la tecnología es una herramienta poderosa para potenciar el arte y la creatividad. Especializados en proyectos que combinan tecnología avanzada con arte, diseño y narrativa, generamos experiencias inmersivas e inolvidables. Desde instalaciones interactivas hasta exhibiciones de realidad aumentada, nos comprometemos a entregar soluciones personalizadas para cada proyecto." +
       "Nuestro equipo de expertos en tecnología y creativos aborda cada proyecto desde múltiples perspectivas para ofrecer soluciones innovadoras y efectivas. Trabajamos en estrecha colaboración con nuestros clientes para entender sus necesidades y objetivos, y así diseñar experiencias a la medida."
@@ -133,7 +133,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.2",
     year: "©2023",
     title: "Checo Pérez, Disney Plus, seguimiento de la temporada de Checo Pérez en la F1",
-    url: "https://www.youtube.com/watch?v=sDznA5r8kU4&ab_channel=StarLatinoam%C3%A9rica",
+    url: "https://www.youtube.com/embed/sDznA5r8kU4",
     keywords: "Películas y cortometrajes de ficción",
     type: "youtube"
   },
@@ -141,7 +141,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.3",
     year: "©2023",
     title: "Lumbrensueño, por José Pablo Escamilla, Colectivo Colmena",
-    url: "https://vimeo.com/853559280",
+    url: "https://player.vimeo.com/video/853559280",
     keywords: "Películas y cortometrajes de ficción",
     type: "vimeo"
   },
@@ -149,7 +149,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.4",
     year: "©2022",
     title: "Mostro, por José Pablo Escamilla, Colectivo Colmena",
-    url: "https://vimeo.com/582998515",
+    url: "https://player.vimeo.com/video/582998515",
     keywords: "Películas y cortometrajes de ficción",
     type: "vimeo"
   },
@@ -157,7 +157,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.5",
     year: "©2022",
     title: "Atados los años engullen la tierra, Clemente Castor",
-    url: "https://www.youtube.com/watch?v=Utw_kb_AQBc&ab_channel=Sal%C3%B3ndeBellezaICine",
+    url: "https://www.youtube.com/embed/Utw_kb_AQBc",
     keywords: "Películas y cortometrajes de ficción",
     type: "youtube"
   },
@@ -165,7 +165,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.6",
     year: "©2012",
     title: "El secreto del medallón de Jade, Leopoldo Aguilar y Rodolfo Guzman",
-    url: "https://www.youtube.com/watch?v=g9S9jbme0uM",
+    url: "https://www.youtube.com/embed/g9S9jbme0uM",
     keywords: "Animación",
     type: "youtube"
   },
@@ -195,7 +195,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.10",
     year: "©2012",
     title: "Mamut rescata a Flippy, One Simple Idea",
-    url: "https://www.youtube.com/watch?v=elgT9auykMI&ab_channel=GerardoMart%C3%ADnezAngeles",
+    url: "https://www.youtube.com/embed/elgT9auykMI",
     keywords: "Animación",
     type: "youtube"
   },
@@ -203,7 +203,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.11",
     year: "©2010",
     title: "Days of glory, Josue Mancilla",
-    url: "https://www.youtube.com/watch?v=FMIZ-qxgPg8&ab_channel=GerardoMart%C3%ADnezAngeles",
+    url: "https://www.youtube.com/embed/FMIZ-qxgPg8",
     keywords: "Animación",
     type: "youtube"
   },
@@ -211,7 +211,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.12",
     year: "©2024",
     title: "El Candidato Honesto, Pipe Ybarra / Videocine",
-    url: "https://www.youtube.com/watch?v=ZtwywjeCfLQ&ab_channel=Videocine",
+    url: "https://www.youtube.com/embed/ZtwywjeCfLQ",
     keywords: "Mezcla eb 5.1 de trailers",
     type: "youtube"
   },
@@ -219,7 +219,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.13",
     year: "©2024",
     title: "Familia Nacional, por Marcelo Alejandro Tobar de Albornoz, Videocine",
-    url: "https://www.youtube.com/watch?v=CC-QnYx0E98&ab_channel=Videocine",
+    url: "https://www.youtube.com/embed/CC-QnYx0E98",
     keywords: "Mezcla eb 5.1 de trailers",
     type: "youtube"
   },
@@ -227,39 +227,39 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "C.14",
     year: "©2023",
     title: "Noche de Bodas, por Osvaldo Benavides, Videocine",
-    url: "https://www.youtube.com/watch?v=g4BLH8sHIFo&t=5s&ab_channel=Videocine",
-    keywords: "Mezcla eb 5.1 de trailers",
-    type: "youtube"
-  },
-  {
-    index: "C.14",
-    year: "©2023",
-    title: "Radical, por Christopher Zalla, Videocine",
-    url: "https://www.youtube.com/watch?v=4CpKulS9h88&ab_channel=Videocine",
+    url: "https://www.youtube.com/embed/g4BLH8sHIFo",
     keywords: "Mezcla eb 5.1 de trailers",
     type: "youtube"
   },
   {
     index: "C.15",
     year: "©2023",
-    title: "Sobreviviendo a mis XV, Chava Cartas, Videocine",
-    url: "https://www.youtube.com/watch?v=j3VsLAuVpb8&t=47s&ab_channel=Videocine",
+    title: "Radical, por Christopher Zalla, Videocine",
+    url: "https://www.youtube.com/embed/4CpKulS9h88",
     keywords: "Mezcla eb 5.1 de trailers",
     type: "youtube"
   },
   {
     index: "C.16",
     year: "©2023",
-    title: "Papá o Mamá, por Ernesto Contreras, Videocine",
-    url: "https://www.youtube.com/watch?v=aXxvw4CLSH4&ab_channel=Videocine",
+    title: "Sobreviviendo a mis XV, Chava Cartas, Videocine",
+    url: "https://www.youtube.com/embed/j3VsLAuVpb8",
     keywords: "Mezcla eb 5.1 de trailers",
     type: "youtube"
   },
   {
     index: "C.17",
+    year: "©2023",
+    title: "Papá o Mamá, por Ernesto Contreras, Videocine",
+    url: "https://www.youtube.com/embed/aXxvw4CLSH4",
+    keywords: "Mezcla eb 5.1 de trailers",
+    type: "youtube"
+  },
+  {
+    index: "C.18",
     year: "©2022",
     title: "Malvada, por J.M Cravioto, Videocine",
-    url: "https://www.youtube.com/watch?v=qI1MAr0q89E",
+    url: "https://www.youtube.com/embed/qI1MAr0q89E",
     keywords: "Mezcla eb 5.1 de trailers",
     type: "youtube"
   },
@@ -267,7 +267,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "D.1",
     year: "©2023",
     title: "Floating with spirits, por Juanita Onzaga",
-    url: "https://www.youtube.com/watch?v=RpxViBRU2O4",
+    url: "https://www.youtube.com/embed/RpxViBRU2O4",
     type: "youtube"
   },
   {
@@ -281,28 +281,28 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "D.3",
     year: "©2023",
     title: "Murmullos de la frontera, Documental sobre la migración en Centroamérica",
-    url: "https://www.youtube.com/watch?v=X9v7wG8SzF4&t=100s",
+    url: "https://www.youtube.com/embed/X9v7wG8SzF4",
     type: "youtube"
   },
   {
     index: "D.4",
     year: "©2023",
     title: "Costa Canuva",
-    url: "https://www.youtube.com/watch?v=-vRXv1zhy00&ab_channel=GerardoMart%C3%ADnezAngeles",
+    url: "https://www.youtube.com/embed/-vRXv1zhy00",
     type: "youtube"
   },
   {
     index: "D.5",
     year: "©2023",
     title: "Giardino",
-    url: "https://www.youtube.com/watch?v=2ezITLyqnhI&t=1s",
+    url: "https://www.youtube.com/embed/2ezITLyqnhI",
     type: "youtube"
   },
   {
     index: "D.6",
     year: "©2023",
     title: "Avenir",
-    url: "https://www.youtube.com/watch?v=rJj2wFJHn-Q&ab_channel=GerardoMart%C3%ADnezAngeles",
+    url: "https://www.youtube.com/embed/rJj2wFJHn-Q",
     type: "youtube"
   }
 ]

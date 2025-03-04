@@ -46,8 +46,8 @@ export const FOOTER: FooterInfo = {
         { title: "BLACK CUBE NOMADIC ART MUSEUM", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/blackCubeNomadicArt.png?alt=media&token=10071a09-3f6f-4383-baaf-6e19b24f9132" },
         { title: "MUSEO MEMORIA Y TOLERANCIA", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/museoMemoriaTolerancia.png?alt=media&token=5225cc4e-b992-420c-b8c8-52bf311412ff" },
         { title: "FICUNAM", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/ficunam.png?alt=media&token=2c977ebf-3129-498c-b67c-d06e9770a0a7" },
-      { title: "ITESO - UNIVERSIDAD JESUITA DE GUADALAJARA", url: "/brands/iteso.png" },
-        { title: "LIVERPOOL", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/iteso.png?alt=media&token=bcbf6b86-3e05-4da3-92a5-dcd4387cc080" },
+        { title: "ITESO - UNIVERSIDAD JESUITA DE GUADALAJARA", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/iteso.png?alt=media&token=bcbf6b86-3e05-4da3-92a5-dcd4387cc080" },
+        { title: "LIVERPOOL", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/liverpool.png?alt=media&token=e0cda087-0668-4841-9024-a572c3d671d8" },
         { title: "TELCEL", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/telcel.png?alt=media&token=4249b076-0944-484b-a113-719f0f1ec017" },
         { title: "REVISTA AO", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/revistaAo.png?alt=media&token=788d7b8f-f796-4030-be9c-3851e3c1e6b2" },
         { title: "IDENTO", url: "https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/idento.png?alt=media&token=73c2034e-7e93-42bb-8d52-2189d5270029" },
@@ -287,21 +287,21 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
   {
     index: "D.4",
     year: "©2023",
-    title: "Costa Canuva",
+    title: "COSTA CANUVA, VIDEO 360 PARA DESARROLLO ARQUITECTÓNICO",
     url: "https://www.youtube.com/embed/-vRXv1zhy00",
     type: "youtube"
   },
   {
     index: "D.5",
     year: "©2023",
-    title: "Giardino",
+    title: "GIARDINO, VIDEO 360 PARA SPA EN SUIZA",
     url: "https://www.youtube.com/embed/2ezITLyqnhI",
     type: "youtube"
   },
   {
     index: "D.6",
     year: "©2023",
-    title: "Avenir",
+    title: "Avenir, VIDEO 360 PARA INMOBILIARIA",
     url: "https://www.youtube.com/embed/rJj2wFJHn-Q",
     type: "youtube"
   }

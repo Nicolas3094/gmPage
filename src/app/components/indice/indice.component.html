@@ -4,20 +4,18 @@
 
         <a class="buttonIndex" (click)="handleButtoIndex(indexElem)">
             <div class="indexTitle">
-                ({{indexElem.index}})
+                <p>({{indexElem.index}})</p>
             </div>
-            <div class="year" *ngIf="device.isDesktopDevice">
-                {{indexElem.year}}
+            <div class="year">
+                <p>{{indexElem.year}}</p>
             </div>
 
             <div class="title">
-                {{indexElem.title}}
+                <p>{{indexElem.title}}</p>
             </div>
 
-            <div class="keywords" *ngIf="device.isDesktopDevice">
-                <ng-container *ngIf="indexElem.keywords!=null">
-                    {{indexElem.keywords}}
-                </ng-container>
+            <div class="keywords" *ngIf="indexElem.keywords!=undefined">
+                <p>{{indexElem.keywords}}</p>
             </div>
         </a>
     </ng-container>

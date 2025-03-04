@@ -4,8 +4,6 @@ import { MAIN_INDEX_LIST } from '../../app.config';
 import { NgFor, NgIf } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SafeUrlPipe } from '../../safe-url.pipe';
-import { Device } from '../../models/device.model';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   standalone:true,
@@ -20,12 +18,8 @@ export class IndiceComponent {
   currentIndexElement?: IndexElement;
   sanitizer: DomSanitizer;
 
-  device:Device;
-
-
-  constructor(sanitizer: DomSanitizer, deviceService:DeviceDetectorService) {
+  constructor(sanitizer: DomSanitizer) {
     this.sanitizer = sanitizer;
-    this.device = new Device(deviceService);
   }
 
   handleButtoIndex(indexElement:IndexElement){

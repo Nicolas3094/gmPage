@@ -1,43 +1,6 @@
 $border: 0.5mm solid rgba(207, 207, 207, 255);
 $fifth: calc(100/5)*(1%);
-
-@font-face {
-    font-family: 'Ingram Mono Regular';
-    src: url("../public/Ingram-Mono-Regular.otf") format('truetype');
-}
-
-.instagram-video-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 10px;
-}
-
-html,
-body {
-    max-width: 100%;
-    overflow-x: hidden;
-    display: flex;
-        flex-direction: column;
-}
-
-p {
-    line-height: 1.5;
-}
-
-.empty {
-    display: block;
-}
-
-button {
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    padding: 0;
-    text-align: inherit;
-    font: inherit;
-    border-radius: 0;
-    appearance: none;
-}
+$tablet: only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait);
 
 * {
     display: block;
@@ -57,14 +20,31 @@ a {
 body {
     margin: 12px;
     font-size: 12px;
-    font-family: 'Ingram Mono Regular', sans-serif;
+    font-family: 'Ingram Mono Regular',
+        sans-serif;
     text-transform: uppercase;
+
+    /* Estilos para móviles (vertical y horizontal) */
+    @media (max-width: 767px) {
+        font-size: 8px;
+    }
 }
 
 
 header {
     display: grid;
     grid-template-columns: 20% 55% 10% 15%;
+    grid-template-rows: 100%;
+    align-items: start;
+
+    //Celular
+    @media (max-width: 767px) and (orientation: portrait) {
+        grid-template-columns: 27% 60% 13%;
+    }
+
+    @media (max-height: 767px) and (orientation: landscape) {
+        grid-template-columns: 27% 60% 13% 0%;
+    }
 
     .menu {
         display: flex;
@@ -85,7 +65,7 @@ header {
         display: block;
         width: 50px;
         height: 50px;
-
+        align-self: center;
         justify-self: end;
 
         img {
@@ -95,17 +75,107 @@ header {
     }
 }
 
+
+main {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    a:first-child {
+        border-bottom: none;
+    }
+
+    a:last-child {
+        border-bottom: $border;
+        
+    }
+
+    a {
+        border-top: $border;
+        display: grid;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        grid-template-columns: 20% 20% 35% 24% 1%;
+
+        //Celular
+        @media (max-width: 767px) or ((max-height: 767px) and (orientation: landscape)) {
+            grid-template-columns: 27% 66% 7%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            grid-template-columns: 20% 67% 13%;
+            .year,
+            .keywords {
+                display: none;
+            }
+        }
+
+    }
+
+
+    a:after {
+        display: inline-block;
+        justify-self: end;
+        align-self: flex-end;
+        $from: 0.5;
+        $scale: 1;
+        -webkit-transform: scale($from, $scale);
+        /* Safari and Chrome */
+        -moz-transform: scale($from, $scale);
+        /* Firefox */
+        -ms-transform: scale($from, $scale);
+        /* IE 9 */
+        -o-transform: scale($from, $scale);
+        /* Opera */
+        transform: scale($from, $scale);
+        /* W3C */
+        content: ">";
+        font-size: 12px;
+        font-weight: bolder;
+        position: relative;
+    }
+
+    //Celular
+    @media (max-width: 767px) or ((max-height: 767px) and (orientation: landscape)) {
+        padding-top: 0;
+        padding-bottom: 5px;
+    }
+
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+        padding-top: 0;
+        padding-bottom: 5px;
+    }
+}
+
+
 footer {
     display: flex;
     flex-direction: column;
 
+
     .aliados {
         display: grid;
-
         grid-template-columns: 15% 25% 35% 30%;
         border-bottom: $border;
         padding: 10px;
         padding-left: 0px;
+        padding-right: 0;
+
+
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+            display: none;
+            padding: 0;
+        }
+
 
         .titulo {
             align-self: flex-start;
@@ -122,9 +192,22 @@ footer {
         display: grid;
         border-bottom: $border;
         grid-template-columns: 15% 25% 60%;
-        grid-template-rows: 100%;
         padding: 10px;
+        grid-template-rows: 100%;
         padding-left: 0px;
+
+        @media (max-width: 767px) or ((max-height: 767px) and (orientation: landscape)) {
+            padding: 5px;
+            padding-top: 0;
+            grid-template-columns: 27% 0% 70%;
+        }
+
+        //Tablet
+        @media only screen and ((min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)) {
+            grid-template-columns: 20% 0% 80%;
+            padding-top: 0;
+
+        }
 
         .info {
             .text {
@@ -146,6 +229,12 @@ footer {
                     max-height: 70px;
                     max-width: 120px;
                     margin: 5px;
+
+                    @media (max-width: 767px) {
+                        max-height: 35px;
+                        max-width: 50px;
+                    }
+
                 }
             }
         }
@@ -154,15 +243,31 @@ footer {
     .nosotros {
         display: grid;
         grid-template-columns: 20% 20% 60%;
-
-        justify-content: space-around;
+        grid-template-rows: 100%;
         padding: 10px;
         padding-left: 0px;
+
+        @media (max-width: 767px) or ((max-height: 767px) and (orientation: landscape)) {
+            padding: 5px;
+            padding-left: 0px;
+            grid-template-columns: 56% 50%;
+        }
+
+
+        .title {
+            @media (max-width: 767px) or ((max-height: 767px) and (orientation: landscape)) {
+                justify-self: start;
+            }
+        }
 
         .contact {
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
+
+            @media (max-width: 767px) or ((max-height: 767px) and (orientation: landscape)) {
+                justify-self: center;
+            }
 
             a:after {
                 display: inline-block;
@@ -193,55 +298,6 @@ footer {
             overflow-wrap: break-word;
         }
     }
-}
-
-main {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    overflow-y: auto;
-}
-
-.mainIndex {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-    a:first-child {
-        border-bottom: none;
-    }
-
-    a:last-child {
-        border-bottom: $border;
-    }
-
-    a {
-        border-top: $border;
-        display: grid;
-        grid-template-columns: 20% 20% 35% 24% 1%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    a:after {
-        display: inline-block;
-        $from: 0.5;
-        $scale: 1;
-        -webkit-transform: scale($from, $scale);
-        /* Safari and Chrome */
-        -moz-transform: scale($from, $scale);
-        /* Firefox */
-        -ms-transform: scale($from, $scale);
-        /* IE 9 */
-        -o-transform: scale($from, $scale);
-        /* Opera */
-        transform: scale($from, $scale);
-        /* W3C */
-        content: ">";
-        font-size: 12px;
-        font-weight: bolder;
-        position: relative;
-    }
-
 }
 
 .overlay {
@@ -287,35 +343,45 @@ main {
     overflow: auto;
 }
 
+@font-face {
+    font-family: 'Ingram Mono Regular';
+    src: url("../public/Ingram-Mono-Regular.otf") format('truetype');
+}
+
+.instagram-video-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    line-height: 1.5;
+}
+
+.empty {
+    display: block;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    font: inherit;
+    border-radius: 0;
+    appearance: none;
+}
+
 /* Estilos para tablets (vertical y horizontal) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    body {
-        background-color: #e0e0e0;
-    }
+@media (min-width: 768px) and (max-width: 1023px) {}
 
-}
-
-@media (min-width: 768px) and (orientation: landscape) {
-    body {
-        background-color: #d0d0d0;
-    }
-
-    .container {
-        width: 800px;
-        margin: 0 auto;
-    }
-}
-
-/* Estilos para móviles (vertical y horizontal) */
-@media (max-width: 767px) {
-    body {
-        font-size: 9px;
-    }
-
-}
-
-@media (max-width: 767px) and (orientation: landscape) {
-    body {
-        font-size: 9px;
-    }
-}
+@media (min-width: 768px) and (orientation: landscape) {}

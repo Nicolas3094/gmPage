@@ -1,24 +1,25 @@
 <main class="mainIndex">
-    
+
     <ng-container *ngFor="let indexElem of elementsList">
 
         <a class="buttonIndex" (click)="handleButtoIndex(indexElem)">
             <div class="indexTitle">
                 ({{indexElem.index}})
             </div>
-            <div class="year">
+            <div class="year" *ngIf="device.isDesktopDevice">
                 {{indexElem.year}}
             </div>
+
             <div class="title">
                 {{indexElem.title}}
             </div>
-            <div class="keywords">
+
+            <div class="keywords" *ngIf="device.isDesktopDevice">
                 <ng-container *ngIf="indexElem.keywords!=null">
                     {{indexElem.keywords}}
                 </ng-container>
             </div>
         </a>
-       
     </ng-container>
 </main>
 
@@ -26,8 +27,8 @@
     <div class="popup">
         <a class="close" (click)="close()">&times;</a>
         <div class="content">
-            <iframe [src]='currentIndexElement.url | safeUrl' width="640" height="360" frameborder="1" allow="autoplay; fullscreen"
-            allowfullscreen></iframe>
+            <iframe [src]='currentIndexElement.url | safeUrl' width="640" height="360" frameborder="1"
+                allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <footer>
-    <div class="aliados">
+    <div class="aliados" *ngIf="device.isDesktopDevice">
         <div class="titulo">
             {{footerInfo.aliados[0].title}}
         </div>
@@ -37,7 +37,6 @@
     </div>
 
     <div class="nosotros">
-
         <div class="title">
             {{footerInfo.nosotros.title}}
         </div>
@@ -50,7 +49,7 @@
         </div>
 
 
-        <div class="descripcion">
+        <div class="descripcion" *ngIf="device.isDesktopDevice">
             <p>{{footerInfo.nosotros.description}}</p>
         </div>
     </div>

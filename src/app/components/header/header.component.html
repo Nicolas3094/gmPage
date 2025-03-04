@@ -10,14 +10,14 @@
         </p>
     </div>
 
-
-    <div class="menu">
+    <div class="menu" *ngIf="device.isDesktopDevice">
         <!--
-        <a class="index" routerLink='/index' routerLinkActive="active-link" >{{headerInfo.menu[0]}}</a> / 
-        <a class="images" routerLink='/images' routerLinkActive="active-link">{{headerInfo.menu[1]}}</a>
-        -->
+            <a class="index" routerLink='/index' routerLinkActive="active-link" >{{headerInfo.menu[0]}}</a> / 
+            <a class="images" routerLink='/images' routerLinkActive="active-link">{{headerInfo.menu[1]}}</a>
+            -->
     </div>
-    
+
+
     <div class="logo">
         <img
             src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">

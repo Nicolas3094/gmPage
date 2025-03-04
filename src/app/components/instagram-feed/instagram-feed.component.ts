@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-instagram-feed',
@@ -6,13 +6,17 @@ import { Component, Input } from '@angular/core';
   templateUrl: './instagram-feed.component.html',
   styleUrl: './instagram-feed.component.scss'
 })
-export class InstagramFeedComponent {
+export class InstagramFeedComponent implements OnInit {
   @Input() instagramId:string | undefined;
 
+  ngOnInit(): void {
+    this.loadInstagramScript();
+  }
 
-  build(){
-    return `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/`+this.instagramId+`/" data-instgrm-version="13">
-      <a href="https://www.instagram.com/p/`+this.instagramId+`/" target="_blank">Ver en Instagram</a>
-    </blockquote>`
+  loadInstagramScript(): void {
+    const script = document.createElement('script');
+    script.src = '//www.instagram.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
   }
 }

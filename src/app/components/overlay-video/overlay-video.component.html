@@ -1,0 +1,11 @@
+<div class="popup">
+    <a class="close" (click)="close()">&times;</a>
+    <ng-template *ngIf="currentIndexElement!.type === 'instagram'">
+        <app-instagram-feed></app-instagram-feed>
+    </ng-template>
+
+    <div class="content">
+        <iframe [src]='currentIndexElement!.url | safeUrl' width="640" height="360" frameborder="1"
+            allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+</div>

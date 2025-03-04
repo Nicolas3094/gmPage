@@ -22,11 +22,5 @@
 </main>
 
 <div class="overlay" *ngIf="popup && currentIndexElement!=null" (click)="close()">
-    <div class="popup">
-        <a class="close" (click)="close()">&times;</a>
-        <div class="content">
-            <iframe [src]='currentIndexElement.url | safeUrl' width="640" height="360" frameborder="1"
-                allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </div>
-    </div>
+    <app-overlay-video [currentIndexElement]="currentIndexElement" [(popup)]="popup"></app-overlay-video>
 </div>

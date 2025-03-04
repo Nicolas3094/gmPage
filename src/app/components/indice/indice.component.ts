@@ -4,11 +4,12 @@ import { MAIN_INDEX_LIST } from '../../app.config';
 import { NgFor, NgIf } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SafeUrlPipe } from '../../safe-url.pipe';
+import { OverlayVideoComponent } from '../overlay-video/overlay-video.component';
 
 @Component({
   standalone:true,
   selector: 'app-indice',
-  imports: [NgFor, NgIf, SafeUrlPipe],
+  imports: [NgFor, NgIf, OverlayVideoComponent],
   templateUrl: './indice.component.html'
 })
 export class IndiceComponent {
@@ -25,7 +26,7 @@ export class IndiceComponent {
   handleButtoIndex(indexElement:IndexElement){
     console.log(indexElement.index);
     this.currentIndexElement = indexElement;
-    if (indexElement.type === "vimeo" || indexElement.type === "youtube") {
+    if (indexElement.type === "vimeo" || indexElement.type === "youtube" || indexElement.type==="instagram") {
       this.popup = true;
     } else {
       window.open(indexElement.url, "_blanks");

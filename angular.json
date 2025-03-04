@@ -32,7 +32,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/app/components/privacy/privacy.component.scss"
             ],
             "scripts": []
           },

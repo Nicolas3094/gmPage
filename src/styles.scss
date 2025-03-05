@@ -111,7 +111,7 @@ main {
         display: grid;
         padding-top: 10px;
         padding-bottom: 10px;
-        grid-template-columns: 20% 20% 35% 24% 1%;
+        grid-template-columns: 20% 20% 35% 23% 2%;
 
         //Celular
         @media (max-device-width: 767px) or ((max-device-height: 767px) and (orientation: landscape)) {
@@ -157,6 +157,9 @@ main {
         font-size: 12px;
         font-weight: bolder;
         position: relative;
+
+        align-self: center;
+        justify-self: end;
     }
 
     //Celular

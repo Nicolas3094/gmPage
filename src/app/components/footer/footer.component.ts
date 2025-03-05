@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FooterInfo } from '../../models/footer-info.model';
 import { FOOTER } from '../../app.config';
 import { NgFor } from '@angular/common';
-import { Device } from '../../models/device.model';
 
 @Component({
   standalone: true,

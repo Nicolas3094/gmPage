@@ -3,7 +3,6 @@ import { FooterInfo } from '../../models/footer-info.model';
 import { FOOTER } from '../../app.config';
 import { NgFor } from '@angular/common';
 import { Device } from '../../models/device.model';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   standalone: true,
@@ -16,11 +15,8 @@ export class FooterComponent {
 
   clientsInfo: String;
 
-  device: Device;
-
-  constructor(deviceService: DeviceDetectorService) {
+  constructor() {
     this.clientsInfo = FOOTER.clientes.clients.map(val => val.title).join(", ");
-    this.device = new Device(deviceService);
   }
 
   handleContact(url?: string) {

@@ -26,7 +26,7 @@ export class IndiceComponent {
   handleButtoIndex(indexElement:IndexElement){
     console.log(indexElement.index);
     this.currentIndexElement = indexElement;
-    if (indexElement.type === "vimeo" || indexElement.type === "youtube" || indexElement.type==="instagram") {
+    if (indexElement.type === "vimeo" || indexElement.type === "youtube") {
       this.popup = true;
     } else {
       window.open(indexElement.url, "_blanks");

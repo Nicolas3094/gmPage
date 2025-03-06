@@ -1,11 +1,12 @@
 <main class="mainIndex">
 
     <ng-container *ngFor="let indexElem of elementsList">
-
         <a class="buttonIndex" (click)="handleButtoIndex(indexElem)">
+
             <div class="indexTitle">
                 <p>({{indexElem.index}})</p>
             </div>
+            
             <div class="year">
                 <p>{{indexElem.year}}</p>
             </div>

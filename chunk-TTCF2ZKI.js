@@ -1,1 +1,0 @@
-import{$a as a,Ha as t,Sa as o,Ta as s}from"./chunk-65P4AXIT.js";var m=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-imagenes"]],decls:2,vars:0,template:function(e,p){e&1&&(o(0,"p"),a(1,"imagenes works!"),s())},encapsulation:2})};export{m as ImagenesComponent};

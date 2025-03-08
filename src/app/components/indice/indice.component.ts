@@ -23,7 +23,7 @@ export class IndiceComponent {
 
   constructor(private firestore: AngularFirestore) {
     this.observable$ = this.firestore.collection('indexElements').valueChanges().pipe(
-      map(obj => obj.map(element => element as IndexElement).sort((a,b)=>a.index > b.index ? 1 : -1) as Array<IndexElement>)
+      map(obj => obj.map(element => element as IndexElement).sort((a,b) => b.order < a.order ? 1 : -1) as Array<IndexElement>)
     );
    }
 

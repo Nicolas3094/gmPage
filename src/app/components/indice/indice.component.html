@@ -1,6 +1,7 @@
 <main class="mainIndex">
 
-    <ng-container *ngFor="let indexElem of elementsList">
+    <ng-container *ngFor="let indexElem of observable$ | async">
+        
         <a class="buttonIndex" (click)="handleButtoIndex(indexElem)">
 
             <div class="indexTitle">

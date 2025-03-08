@@ -171,28 +171,14 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
   },
   {
     index: "C.7",
-    year: "©2013",
-    title: "Pantalla de Cristal por mejor diseño de audio",
-    url: "https://www.revistapantalla.com/festival/ganadores/2013/peliculas.php",
-    type: "web"
-  },
-  {
-    index: "C.8",
     year: "©2008",
     title: "Fuera de control, Sofia Carrillo",
-    url: "https://mubi.com/es/mx/films/out-of-control-2008",
+    url: "https://www.youtube.com/embed/09VyqXxY64w",
     keywords: "Animación",
     type: "mubi"
   },
   {
-    index: "C.9",
-    year: "©2008",
-    title: "Pantalla de Cristal por mejor diseño de audio",
-    url: "https://www.revistapantalla.com/festival/ganadores/2008/ficcion.php",
-    type: "web"
-  },
-  {
-    index: "C.10",
+    index: "C.8",
     year: "©2012",
     title: "Mamut rescata a Flippy, One Simple Idea",
     url: "https://www.youtube.com/embed/elgT9auykMI",
@@ -200,7 +186,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.11",
+    index: "C.9",
     year: "©2010",
     title: "Days of glory, Josue Mancilla",
     url: "https://www.youtube.com/embed/FMIZ-qxgPg8",
@@ -208,7 +194,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.12",
+    index: "C.10",
     year: "©2024",
     title: "El Candidato Honesto, Pipe Ybarra / Videocine",
     url: "https://www.youtube.com/embed/ZtwywjeCfLQ",
@@ -216,7 +202,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.13",
+    index: "C.11`",
     year: "©2024",
     title: "Familia Nacional, por Marcelo Alejandro Tobar de Albornoz, Videocine",
     url: "https://www.youtube.com/embed/CC-QnYx0E98",
@@ -224,7 +210,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.14",
+    index: "C.12",
     year: "©2023",
     title: "Noche de Bodas, por Osvaldo Benavides, Videocine",
     url: "https://www.youtube.com/embed/g4BLH8sHIFo",
@@ -232,7 +218,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.15",
+    index: "C.13",
     year: "©2023",
     title: "Radical, por Christopher Zalla, Videocine",
     url: "https://www.youtube.com/embed/4CpKulS9h88",
@@ -240,7 +226,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.16",
+    index: "C.14",
     year: "©2023",
     title: "Sobreviviendo a mis XV, Chava Cartas, Videocine",
     url: "https://www.youtube.com/embed/j3VsLAuVpb8",
@@ -248,7 +234,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.17",
+    index: "C.15",
     year: "©2023",
     title: "Papá o Mamá, por Ernesto Contreras, Videocine",
     url: "https://www.youtube.com/embed/aXxvw4CLSH4",
@@ -256,7 +242,7 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     type: "youtube"
   },
   {
-    index: "C.18",
+    index: "C.16",
     year: "©2022",
     title: "Malvada, por J.M Cravioto, Videocine",
     url: "https://www.youtube.com/embed/qI1MAr0q89E",
@@ -274,8 +260,8 @@ export const MAIN_INDEX_LIST: Array<IndexElement> = [
     index: "D.2",
     year: "©2023",
     title: "Miguel Bosé, MTV Unplugged 360",
-    url: "https://www.facebook.com/mtvla/videos/10154509330958070",
-    type: "facebook"
+    url: "https://www.youtube.com/embed/hAZTvyzjnFc",
+    type: "youtube"
   },
   {
     index: "D.3",

@@ -314,7 +314,6 @@ footer {
         @media (max-device-width: 767px) or (max-device-height: 767px) {
             max-width: 400px;
         }
-
         .close {
             position: absolute;
             top: 0;
@@ -328,9 +327,11 @@ footer {
 
         .content {
             overflow: auto;
-
             iframe{
                 border: none;
+                @media (max-device-width: 767px) or (max-device-height: 767px) {
+                    max-width: max-content;
+                }
             }
         }
 

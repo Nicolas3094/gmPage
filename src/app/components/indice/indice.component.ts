@@ -48,8 +48,6 @@ export class IndiceComponent implements OnInit, OnDestroy {
     let index = expandedObject.id;
     let focusElement = expandedObject.elementRef;
 
-
-
     this.expandedIndex = this.expandedIndex === index && !expandedObject.isActive ? undefined : index;
 
   }

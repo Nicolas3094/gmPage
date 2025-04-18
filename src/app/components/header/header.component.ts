@@ -5,9 +5,9 @@ import { Router, RouterModule } from '@angular/router';
 import { ExpandElementService } from '../../services/expand-element.service';
 import { Subscription } from 'rxjs';
 import { HeaderService } from '../../services/header.service';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
-  standalone: true,
   selector: 'app-header',
   imports: [NgFor, NgIf, RouterModule, NgClass],
   templateUrl: './header.component.html',
@@ -21,6 +21,7 @@ import { HeaderService } from '../../services/header.service';
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private headerService: HeaderService = inject(HeaderService);
+  private spinnerService: SpinnerService = inject(SpinnerService);
 
   videoSource?: String;
 
@@ -38,14 +39,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
 
     if (this.videoRef) {
-      const video: HTMLVideoElement = this.videoRef.nativeElement;
-
-      video.src = this.headerInfo.videoPlayBack;
-
-      video.onloadeddata = () => {
-        this.videoLoaded = true;
-        console.log("video loaded: " + video.src)
-      };
+      this.playVideoElement(this.videoRef)
     }
   }
 
@@ -54,13 +48,25 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.spinnerService.emitLoadedVideo(false);
     this.headerInfo = this.headerService.getHeaderInfo();
     this.videoSource = this.headerService.getHeaderInfo().videoPlayBack;
 
     this.hasExpandedSubcription = this.expandElementService.events$.subscribe(value => {
       this.hasExpanded = value.isActive;
     });
+  }
+
+  playVideoElement(videoElementRef: ElementRef<HTMLVideoElement>) {
+    const video: HTMLVideoElement = videoElementRef.nativeElement;
+
+    video.src = this.headerInfo.videoPlayBack;
+
+    video.onloadeddata = () => {
+      this.videoLoaded = true;
+      this.spinnerService.emitLoadedVideo(this.videoLoaded);
+      video.play();
+    };
   }
 
 

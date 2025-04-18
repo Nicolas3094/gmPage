@@ -9,7 +9,7 @@ export class ExpandElementService {
   private eventSubject = new Subject<ExpandedObject>();
 
 // Método para emitir eventos
-emitEvent( payload: ExpandedObject) {
+  emitEvent(payload: ExpandedObject) {
   this.eventSubject.next(payload);
 }
 

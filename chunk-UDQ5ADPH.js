@@ -1,1 +1,0 @@
-import{Sa as t,cb as o,db as s,lb as a}from"./chunk-Z63JJXIA.js";import"./chunk-U7UK6LYI.js";var m=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-imagenes"]],decls:2,vars:0,template:function(e,p){e&1&&(o(0,"p"),a(1,"imagenes works!"),s())},encapsulation:2})};export{m as ImagenesComponent};

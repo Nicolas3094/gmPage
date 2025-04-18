@@ -1,0 +1,10 @@
+$border: 0.5mm solid rgba(207, 207, 207, 255);
+
+main {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+}

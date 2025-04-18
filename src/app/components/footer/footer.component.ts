@@ -1,21 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FooterInfo } from '../../models/footer-info.model';
-import { FOOTER } from '../../app.config';
 import { NgFor } from '@angular/common';
+import { FooterService } from '../../services/footer.service';
 
 @Component({
   standalone: true,
   selector: 'app-footer',
+  styleUrls: [
+    "./footer.component.scss",
+    "./_mobile_footer.component.scss",
+    "./_tablet_footer.component.scss"
+  ],
   imports: [NgFor],
   templateUrl: './footer.component.html'
 })
 export class FooterComponent {
-  footerInfo: FooterInfo = FOOTER;
+
+  footerService: FooterService = inject(FooterService);
+  footerInfo!: FooterInfo;
 
   clientsInfo: String;
 
   constructor() {
-    this.clientsInfo = FOOTER.clientes.clients.map(val => val.title).join(", ");
+    this.footerInfo = this.footerService.getFooterInfo();
+    this.clientsInfo = this.footerInfo.clientes.clients.map(val => val.title).join(", ");
   }
 
   handleContact(url?: string) {

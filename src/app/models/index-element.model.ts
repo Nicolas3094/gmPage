@@ -5,5 +5,10 @@ export interface IndexElement {
     title: string;
     keywords?: string;
     url:string;
-    type: string;
+    description?: string;
+    image?: string;
+    hasOverflowedText?: boolean;
+    images?: Array<string>;
+    links?: Array<string>;
+    awardWining?: string;
 }

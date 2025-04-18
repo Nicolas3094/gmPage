@@ -1,38 +1,50 @@
 <footer>
-    <div class="clientes">
-
-        <div class ="title">
-            <p>{{footerInfo.clientes.title}}</p>
-        </div>
-
-        <div class="empty"></div>
-
-        <div class="info">
-            <div class="text">
-                <p>{{clientsInfo}}.</p>
-            </div>
-            <div class="clientImages">
-                <img *ngFor="let clientImg of footerInfo.clientes.clients" src="{{clientImg.url}}">
-            </div>            
-        </div>
-    </div>
 
     <div class="nosotros">
-        
+
         <div class="title">
-            {{footerInfo.nosotros.title}}
+            <p>{{footerInfo.nosotros.title}}</p>
+            <p>Contact</p>
         </div>
 
 
         <div class="contact">
             <p *ngFor="let contacto of footerInfo.nosotros.contact">
                 <a (click)="handleContact(contacto.url )">{{contacto.title}}</a>
-            </p> 
+            </p>
         </div>
 
-        <div class="descripcion" >
-            <p>{{footerInfo.nosotros.description}}</p>
+        <div class="descripcion">
+            <span *ngFor="let description of footerInfo.nosotros.descriptions">
+                <p>{{description}}</p>
+            </span>
+
+            <div class="contactDevice">
+                <p *ngFor="let contacto of footerInfo.nosotros.contact">
+                    <a (click)="handleContact(contacto.url )">{{contacto.title}}</a>
+                </p>
+            </div>
         </div>
     </div>
-    
+
+    <div class="clientes">
+
+        <div class="title">
+            <p>{{footerInfo.clientes.title}}</p>
+        </div>
+
+        <div class="empty"></div>
+
+        <div class="info">
+
+            <div class="clientImages">
+                <img *ngFor="let clientImg of footerInfo.clientes.clients" src="{{clientImg.url}}">
+            </div>
+            <div class="text">
+                <p>{{clientsInfo}}.</p>
+            </div>
+        </div>
+    </div>
+
+
 </footer>

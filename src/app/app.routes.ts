@@ -6,6 +6,5 @@ export const routes: Routes = [
     { path: '', redirectTo: 'index', pathMatch: 'full' },
     { path: 'index', component: IndiceComponent },
     { path: 'privacy', component: PrivacyComponent },
-    { path: 'images', loadComponent: () => import('./components/imagenes/imagenes.component').then(mod => mod.ImagenesComponent) }, 
     { path: '**', redirectTo: "index" },
 ];

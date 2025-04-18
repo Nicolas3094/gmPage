@@ -1,49 +1,63 @@
-import {  Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { IndexElement } from '../../models/index-element.model';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { OverlayVideoComponent } from '../overlay-video/overlay-video.component';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map, Observable } from 'rxjs';
-import { FirebaseSetupModule } from '../../firebase-setup/firebase-setup.module';
+import { NgFor } from '@angular/common';
+import { Observable, Subscription } from 'rxjs';
+import { ProjectElementComponent } from '../project-element/project-element.component';
+import { ExpandedObject } from '../../models/ExpandendObject.model';
+import { IndexElementsService } from '../../services/index-elements.service';
 
 @Component({
-  standalone: true,
   selector: 'app-indice',
-  imports: [FirebaseSetupModule, NgFor, NgIf, OverlayVideoComponent, AsyncPipe],
-  templateUrl: './indice.component.html'
+  imports: [NgFor, ProjectElementComponent],
+  templateUrl: './indice.component.html',
+  styleUrls: ['./indice.component.scss',
+    './_phone_indice.component.scss',
+    './_tablet_indice.component.scss']
 })
-export class IndiceComponent {
-  popup: boolean = false;
+export class IndiceComponent implements OnInit, OnDestroy {
+
+  itemExpanded: boolean = false;
+
+  expandedIndex?: number;
 
   elementsList?: Array<IndexElement>;
 
-  currentIndexElement?: IndexElement;
+  observable$ !: Observable<Array<IndexElement>>;
 
-  observable$?: Observable<Array<IndexElement>>;
+  indexArray !: Array<IndexElement>;
 
-  constructor(private firestore: AngularFirestore) {
-    this.observable$ = this.firestore.collection('indexElements').valueChanges().pipe(
-      map(obj => obj.map(element => element as IndexElement).sort((a,b) => b.order < a.order ? 1 : -1) as Array<IndexElement>)
-    );
-   }
+  subscription !: Subscription;
 
-  
+  private indexElementsService: IndexElementsService = inject(IndexElementsService);
 
-  handleButtoIndex(indexElement: IndexElement) {
-    console.log(indexElement.index);
-    this.currentIndexElement = indexElement;
-    switch (indexElement.type) {
-      case "vimeo":
-      case "youtube":
-        this.popup = true;
-        break;
-      default:
-        window.open(indexElement.url, "_blanks");
-    }
+  constructor() {
+    this.subscription = this.indexElementsService.getCollection()
+      .subscribe(value => {
+        this.indexArray = value;
+      })
   }
 
-  close() {
-    this.popup = false;
-    this.currentIndexElement = undefined;
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  ngOnInit(): void {
+  }
+
+  toggleExpand(expandedObject: ExpandedObject) {
+    let index = expandedObject.id;
+    let focusElement = expandedObject.elementRef;
+
+
+
+    this.expandedIndex = this.expandedIndex === index && !expandedObject.isActive ? undefined : index;
+
+  }
+
+  focusOnElement(elementRef: ElementRef) {
+    elementRef.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end' // Esto es clave para que vaya al top
+    });
   }
 }

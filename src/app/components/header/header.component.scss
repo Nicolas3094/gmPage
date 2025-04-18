@@ -1,0 +1,85 @@
+$border: 0.5mm solid rgba(207, 207, 207, 255);
+
+header.video-container,
+header.video-container-expanded {
+
+    width: 100%;
+
+    .content-over-video {
+        width: 100%;
+        display: grid;
+
+        grid-template-columns: 14% 66% 15% 5%;
+        justify-content: right;
+        margin-top: 10px;
+
+        .detalles {
+            justify-self: left;
+            margin-left: 10px;
+        }
+
+        .listado {
+            margin-left: 10%;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            margin-right: 10%;
+        }
+
+        .logo {
+            justify-self: right;
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+
+            img {
+                width: inherit;
+                height: inherit;
+            }
+        }
+    }
+}
+
+header.video-container-expanded {
+
+    margin-bottom: 50px;
+}
+
+header.video-container {
+    padding-bottom: 10px;
+    position: relative;
+    height: 90vh;
+    /* Ajusta según necesites */
+    overflow: hidden;
+
+    p {
+        color: white;
+    }
+
+    .video-background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+
+        /* Para cubrir todo el espacio disponible */
+        object-fit: cover;
+    }
+
+    .content-over-video {
+        position: relative;
+        z-index: 1;
+
+        .logo img {
+            filter: invert(1);
+        }
+    }
+}

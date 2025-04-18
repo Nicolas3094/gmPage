@@ -1,0 +1,10 @@
+<a (click)="sendToNewPage(link)" class="projectUrl">
+    <ng-container *ngIf="httpGroup != undefined && linkGroup != undefined && idGroup != undefined; else fullUrl">
+        <p>{{httpGroup}}</p>
+        <p>{{linkGroup}}</p>
+        <p>{{idGroup}}</p>
+    </ng-container>
+    <ng-template #fullUrl>
+        <p>{{link}}</p>
+    </ng-template>
+</a>

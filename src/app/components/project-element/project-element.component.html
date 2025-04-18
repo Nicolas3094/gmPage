@@ -1,0 +1,76 @@
+<a [ngClass]="{ 'buttonIndex': !expand && !projectElement.hasOverflowedText,
+                'buttonIndexOverflowed': !expand && projectElement!.hasOverflowedText,
+                'closeButtonIndex': expand }"
+    (click)="handleElement()"
+     >
+
+    <div class="indexTitle" #scrolInto>
+        <p>({{projectElement.index}})</p>
+    </div>
+
+    <div class="year">
+
+        <p>{{projectElement.year}}</p>
+
+        <div class="videoLink">
+            <ng-container *ngIf="projectElement?.awardWining">
+                <p>[Award-Winning]<p>
+                <p>{{projectElement.awardWining}}</p>
+            </ng-container>
+
+            <ng-container *ngIf="projectElement?.links; else noLinks">
+                <div *ngFor="let link of projectElement.links" class="links">
+                    <app-formatted-link [link]="link"></app-formatted-link>
+                </div>
+
+            </ng-container>
+
+            <ng-template #noLinks>
+                <div class="link">
+                    <app-formatted-link [link]="projectElement.url"></app-formatted-link>
+                </div>
+            </ng-template>
+            
+        </div>
+
+    </div>
+
+    <div class="title">
+
+        <p>{{projectElement.title}}</p>
+
+        <div class="informationShown">
+
+            <div class="descriptionElement" *ngIf="projectElement?.description">
+                {{projectElement!.description}}
+            </div>
+
+            <div class="mobileYear">
+                <p>{{projectElement.year}}</p>
+            </div>
+
+            <div class="mobileAwardWinning" *ngIf="projectElement.awardWining">
+                <p>Award-Winning, {{projectElement.awardWining}}</p>
+            </div>
+
+            <div class="mobileVideo">
+                <p>{{projectElement.url}}</p>
+            </div>
+
+            <app-element-image [image]="projectElement.image" [images]="projectElement.images"></app-element-image>
+        
+        </div>
+
+    </div>
+
+    <div class="keywords">
+        <p>{{projectElement.keywords}}</p>
+    </div>
+
+    <div [ngClass]="{'icon': !expand, 'icon_collapsed' : expand}"></div>
+
+    <div class="mobileImage">
+        <app-element-image [image]="projectElement.image" [images]="projectElement.images"></app-element-image>
+    </div>
+
+</a>

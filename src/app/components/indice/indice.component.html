@@ -1,28 +1,6 @@
 <main class="mainIndex">
-
-    <ng-container *ngFor="let indexElem of observable$ | async">
-        
-        <a class="buttonIndex" (click)="handleButtoIndex(indexElem)">
-
-            <div class="indexTitle">
-                <p>({{indexElem.index}})</p>
-            </div>
-            
-            <div class="year">
-                <p>{{indexElem.year}}</p>
-            </div>
-
-            <div class="title">
-                <p>{{indexElem.title}}</p>
-            </div>
-
-            <div class="keywords" >
-                <p>{{indexElem.keywords}}</p>
-            </div>
-        </a>
+    <ng-container *ngFor="let indexElem of indexArray; let i = index">
+        <app-project-element [projectElement]="indexElem" [expand]="expandedIndex === i"
+            (sendProject)="toggleExpand($event)"></app-project-element>
     </ng-container>
 </main>
-
-<div class="overlay" *ngIf="popup && currentIndexElement!=null" (click)="close()">
-    <app-overlay-video [currentIndexElement]="currentIndexElement" [(popup)]="popup"></app-overlay-video>
-</div>

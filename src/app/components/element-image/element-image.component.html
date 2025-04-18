@@ -1,0 +1,13 @@
+<div class="imageElement" *ngIf="image && !images">
+    <img [src]="image">
+</div>
+
+<div class="imagesElement" *ngIf="!image && images">
+    <div *ngFor="let link of images" class>
+        <img [src]="link">
+    </div>
+</div>
+
+<ng-container *ngIf="!image && !images">
+    <div class="cuadrado-gris"></div>
+</ng-container>

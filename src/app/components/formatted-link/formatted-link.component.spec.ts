@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImagenesComponent } from './imagenes.component';
+import { FormattedLinkComponent } from './formatted-link.component';
 
-describe('ImagenesComponent', () => {
-  let component: ImagenesComponent;
-  let fixture: ComponentFixture<ImagenesComponent>;
+describe('FormattedLinkComponent', () => {
+  let component: FormattedLinkComponent;
+  let fixture: ComponentFixture<FormattedLinkComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImagenesComponent]
+      imports: [FormattedLinkComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ImagenesComponent);
+    fixture = TestBed.createComponent(FormattedLinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

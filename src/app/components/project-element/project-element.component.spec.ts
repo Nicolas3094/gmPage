@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OverlayVideoComponent } from './overlay-video.component';
+import { ProjectElementComponent } from './project-element.component';
 
-describe('OverlayVideoComponent', () => {
-  let component: OverlayVideoComponent;
-  let fixture: ComponentFixture<OverlayVideoComponent>;
+describe('ProjectElementComponent', () => {
+  let component: ProjectElementComponent;
+  let fixture: ComponentFixture<ProjectElementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OverlayVideoComponent]
+      imports: [ProjectElementComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OverlayVideoComponent);
+    fixture = TestBed.createComponent(ProjectElementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

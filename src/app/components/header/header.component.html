@@ -1,25 +1,32 @@
-<header>
-    <div class="detalles">
-        <p *ngFor="let detalle of headerInfo.detalles">
-            {{detalle}}
-        </p>
-    </div>
-    <div class="listado">
-        <p *ngFor="let listado of headerInfo.listado">
-            {{listado}}
-        </p>
-    </div>
+<header [ngClass]="{'video-container' : !hasExpanded, 'video-container-expanded': hasExpanded}">
 
-    <div class="menu">
-        <!--
-            <a class="index" routerLink='/index' routerLinkActive="active-link" >{{headerInfo.menu[0]}}</a> / 
-            <a class="images" routerLink='/images' routerLinkActive="active-link">{{headerInfo.menu[1]}}</a>
-            -->
-    </div>
+    <video *ngIf="!hasExpanded" class="video-background" autoplay muted loop playsinline #videoElement>
+        <source [src]="videoSource" type="video/mp4" *ngIf="videoLoaded">
+    </video>
 
+    <div class="content-over-video">
 
-    <div class="logo">
-        <img
-            src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">
+        <div class="detalles">
+            <p *ngFor="let detalle of headerInfo.detalles">
+                {{detalle}}
+            </p>
+        </div>
+
+        <div class="listado">
+            <p *ngFor="let listado of headerInfo.listado">
+                {{listado}}
+            </p>
+        </div>
+
+        <div class="menu">
+            <p *ngFor="let contacto of headerInfo.menu">
+                <a (click)="handleContact(contacto.url)">{{contacto.title}}</a>
+            </p>
+            </div>
+
+        <div class="logo">
+            <img
+                src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">
+        </div>
     </div>
 </header>

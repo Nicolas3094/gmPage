@@ -1,0 +1,26 @@
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+
+    a.closeButtonIndex,
+    a.buttonIndex,
+    a.buttonIndexOverflowed {
+        .year .videoLink {
+            overflow-wrap: break-word;
+            width: 50%;
+            margin: 0;
+            padding-top: 20%;
+
+        }
+    }
+    
+    a.buttonIndexOverflowed {
+        max-height: 50px;
+
+        .title p {
+            white-space: wrap;
+            overflow: visible;
+            line-height: 1.5;
+        }
+
+    }
+}

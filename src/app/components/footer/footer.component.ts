@@ -3,6 +3,7 @@ import { FooterInfo } from '../../models/footer-info.model';
 import { NgFor, NgIf } from '@angular/common';
 import { FooterService } from '../../services/footer.service';
 import { Subscription } from 'rxjs';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   standalone: true,
@@ -16,8 +17,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './footer.component.html'
 })
 export class FooterComponent implements OnDestroy {
-
-  footerService: FooterService = inject(FooterService);
+  private spinnerService: SpinnerService = inject(SpinnerService);
+  private footerService: FooterService = inject(FooterService);
   footerInfo!: FooterInfo;
 
   clientsInfo!: String;
@@ -35,6 +36,7 @@ export class FooterComponent implements OnDestroy {
       this.footerInfo = value;
       this.clientsInfo = value.clientes.clients.map(val => val.title).join(", ");
       this.dataloaded = true;
+      this.spinnerService.emitFooterLoadedDta(true);
     });
   }
 

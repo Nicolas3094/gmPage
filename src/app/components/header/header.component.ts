@@ -17,7 +17,7 @@ import { SpinnerService } from '../../services/spinner.service';
   ]
 })
 
-export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   private headerService: HeaderService = inject(HeaderService);
   private spinnerService: SpinnerService = inject(SpinnerService);
@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   videoSource?: String;
   headerInfo !: HeaderInfo;
-  videoLoaded: boolean = false;
   dataLoaded: boolean = false;
   hasExpanded: boolean = false;
 
@@ -37,11 +36,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor() {
   }
 
-  ngAfterViewInit(): void {
-    if (this.videoRef) {
-      this.playVideoElement(this.videoRef)
-    }
-  }
+
 
   ngOnDestroy(): void {
     this.hasExpandedSubcription?.unsubscribe();
@@ -53,23 +48,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.headerInfo = value;
         this.videoSource = value.videoPlayBack;
         this.dataLoaded = true;
-        this.spinnerService.emitLoadedVideo(true);
+        this.spinnerService.emitHeaderLoadedDta(true);
       });
   }
-
-  private playVideoElement(videoElementRef: ElementRef<HTMLImageElement>) {
-    const video: HTMLImageElement = videoElementRef.nativeElement;
-
-    video.src = this.headerInfo.videoPlayBack;
-
-    this.spinnerService.emitLoadedVideo(true);
-
-    video.onloadeddata = async () => {
-      this.videoLoaded = true;
-    };
-  }
-
-
   onIndex() {
     console.log("index");
     this.router.navigateByUrl("index");

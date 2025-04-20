@@ -1,4 +1,4 @@
-<main class="mainIndex">
+<main class="mainIndex" *ngIf="loadedData">
     <ng-container *ngFor="let indexElem of indexArray; let i = index">
         <app-project-element [projectElement]="indexElem" [expand]="expandedIndex === i"
             (sendProject)="toggleExpand($event)"></app-project-element>

@@ -1,14 +1,15 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { IndexElement } from '../../models/index-element.model';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { ProjectElementComponent } from '../project-element/project-element.component';
 import { ExpandedObject } from '../../models/ExpandendObject.model';
 import { IndexElementsService } from '../../services/index-elements.service';
+import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-indice',
-  imports: [NgFor, ProjectElementComponent],
+  imports: [NgFor, NgIf,ProjectElementComponent],
   templateUrl: './indice.component.html',
   styleUrls: [
     '_desktop_indice.component.scss',
@@ -29,14 +30,13 @@ export class IndiceComponent implements OnInit, OnDestroy {
 
   subscription !: Subscription;
 
+  loadedData : boolean = false;
+
   private indexElementsService: IndexElementsService = inject(IndexElementsService);
+  private spinnerService: SpinnerService = inject(SpinnerService);
 
   constructor() {
-    this.subscription = this.indexElementsService
-      .getCollection()
-      .subscribe(value => {
-        this.indexArray = value;
-      })
+   
   }
 
   ngOnDestroy(): void {
@@ -44,6 +44,13 @@ export class IndiceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subscription = this.indexElementsService
+    .getCollection()
+    .subscribe(value => {
+      this.indexArray = value;
+      this.loadedData = true;
+      this.spinnerService.emitLoadedDta(true);
+    })
   }
 
   toggleExpand(expandedObject: ExpandedObject) {

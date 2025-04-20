@@ -45,7 +45,7 @@ export class IndiceComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.indexElementsService
-    .getCollection()
+    .data$
     .subscribe(value => {
       this.indexArray = value;
       this.loadedData = true;

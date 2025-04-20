@@ -4,16 +4,16 @@ import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
 import { collection, collectionData, doc, DocumentData, Firestore, getDoc, query } from '@angular/fire/firestore';
 import { LinkInfoService } from './link-info.service';
 import { Linkinfo } from '../models/linkinfo.model';
+import { FiredataService } from './firedata.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientsService {
-  private readonly name = "clients";
+export class ClientsService extends FiredataService<Clientes, FirestoreClientes> {
 
-  private readonly firestore = inject(Firestore);
   private readonly linkService = inject(LinkInfoService);
-  private readonly converter = {
+
+  protected override converter = {
     toFirestore(clientes: FirestoreClientes): DocumentData {
       return {
         clients: clientes.clients,
@@ -28,10 +28,27 @@ export class ClientsService {
       };
     }
   };
-  constructor() { }
+
+  protected override async convertToOrigin(firestoreObjet: FirestoreClientes): Promise<Clientes> {
+    let clientsArr: Array<Linkinfo> = [];
+
+    for (let i = 0; i < firestoreObjet.clients.length; i++) {
+      const client = await this.linkService.getByDocumentId(firestoreObjet.clients[i].id);
+      clientsArr.push(client);
+    }
+
+    return {
+      title: firestoreObjet.title,
+      clients: clientsArr
+    } as Clientes;
+  }
+
+  constructor() {
+    super("clients");
+  }
 
   get clinets$(): Observable<Clientes> {
-    return this.getCollections()
+    return this.getFirst()
       .pipe(
         switchMap(firestoreClientes => {
           // Convertimos todas las promesas en observables
@@ -48,32 +65,5 @@ export class ClientsService {
           )
         })
       );
-  }
-
-  private getCollections(): Observable<FirestoreClientes> {
-    const itemsRef = collection(this.firestore, this.name);
-    const q = query(itemsRef); // 👈 Ordena por campo
-    return collectionData(q, { idField: 'id' }).pipe(map(collection => collection[0] as FirestoreClientes));
-  }
-
-  async getByDocumentId(docId: string): Promise<Clientes> {
-    const documentRef = doc(this.firestore, this.name + "/" + docId).withConverter(this.converter);
-    const document = await getDoc(documentRef);
-
-    if (document.exists()) {
-      let clientsArr : Array<Linkinfo>= []
-      
-      for (let i = 0; i < document.data()!.clients.length; i++) {
-        const client =await this.linkService.getByDocumentId(document.data()!.clients[i].id);
-        clientsArr.push(client);
-      }
-
-      return {
-        title: document.data().title,
-        clients: clientsArr
-      } as Clientes;
-    }
-
-    throw Error("No existe documento.");
   }
 }

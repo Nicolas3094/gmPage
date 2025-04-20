@@ -1,62 +1,7 @@
-<footer *ngIf="dataloaded">
+<footer>
 
-    <div class="nosotros">
+    <app-nosotros></app-nosotros>
 
-        <div class="title">
-            <p>{{footerInfo.nosotros.title}}</p>
-            <p>Contact</p>
-        </div>
-
-
-        <div class="contact" *ngIf="footerInfo.nosotros.contact as contact">
-            <p>
-                <a (click)="handleContact(contact.email.url)">{{contact.email.title}}</a>
-            </p>
-            <p>
-                <a (click)="handleContact(contact.instagram.url)">{{contact.instagram.title}}</a>
-            </p>
-            <p>
-                <a (click)="handleContact(contact.whatsApp.url)">{{contact.whatsApp.title}}</a>
-            </p>
-        </div>
-
-        <div class="descripcion">
-            <span *ngFor="let description of footerInfo.nosotros.descriptions">
-                <p>{{description}}</p>
-            </span>
-
-            <div class="contactDevice" *ngIf="footerInfo.nosotros.contact as contact">
-                <p>
-                    <a (click)="handleContact(contact.email.url)">{{contact.email.title}}</a>
-                </p>
-                <p>
-                    <a (click)="handleContact(contact.instagram.url)">{{contact.instagram.title}}</a>
-                </p>
-                <p>
-                    <a (click)="handleContact(contact.whatsApp.url)">{{contact.whatsApp.title}}</a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="clientes">
-
-        <div class="title">
-            <p>{{footerInfo.clientes.title}}</p>
-        </div>
-
-        <div class="empty"></div>
-
-        <div class="info">
-
-            <div class="clientImages">
-                <img *ngFor="let clientImg of footerInfo.clientes.clients" src="{{clientImg.url}}">
-            </div>
-            <div class="text">
-                <p>{{clientsInfo}}.</p>
-            </div>
-        </div>
-    </div>
-
+   <app-clients></app-clients>
 
 </footer>

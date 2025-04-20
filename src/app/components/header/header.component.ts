@@ -5,10 +5,11 @@ import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HeaderService } from '../../services/header.service';
 import { SpinnerService } from '../../services/spinner.service';
+import { ContactComponent } from '../contact/contact.component';
 
 @Component({
   selector: 'app-header',
-  imports: [NgFor, RouterModule, NgIf],
+  imports: [NgFor, RouterModule, NgIf, ContactComponent],
   templateUrl: './header.component.html',
   styleUrls: [
     "_desktop_header.component.scss",

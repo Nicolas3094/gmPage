@@ -6,6 +6,7 @@ $border: 0.5mm solid rgba(207, 207, 207, 255);
             padding: 5px;
             padding-left: 0px;
             grid-template-columns: 25% 1fr;
+            
             .contactDevice{
                 display: block;
             }
@@ -18,7 +19,7 @@ $border: 0.5mm solid rgba(207, 207, 207, 255);
                 }
             }
 
-            .contact {
+            app-contact {
                 display: none;
             }
 

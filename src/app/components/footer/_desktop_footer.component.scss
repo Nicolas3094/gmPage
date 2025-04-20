@@ -19,66 +19,15 @@ footer {
         border-bottom: none;
     }
 
-    .nosotros {
-        display: grid;
-        grid-template-columns: 20% 20% 60%;
-        grid-template-rows: 100%;
+    app-nosotros {
         padding: 10px;
         padding-left: 0px;
         padding-top: 5px;
-
-        .contact {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;   
-        }
-
-        .descripcion {
-            display: flex;
-            flex-wrap: wrap;
-            overflow-wrap: break-word;
-            padding-bottom: 60px;
-            line-height: 1.2    ;
-
-            span {
-                margin-bottom: 10px;
-            }
-        }
-
-        .contactDevice{
-            display: none;
-        }
     }
 
-    .clientes {
-        display: grid;
+    app-clients {
         border-top: $border;
-        grid-template-columns: 15% 25% 60%;
         padding: 10px;
-        grid-template-rows: 100%;
         padding-left: 0px;
-
-        .info {
-            .text {
-                display: flex;
-                flex-direction: rows;
-            }     
-            .clientImages {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-
-                align-items: center;
-                justify-content: left;
-
-                img {
-                    filter: grayscale(1);
-                    opacity: 0.25;
-                    max-height: 70px;
-                    max-width: 120px;
-                    margin: 5px;
-                }
-            }
-        }
     }
 }

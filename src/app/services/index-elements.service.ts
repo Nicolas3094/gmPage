@@ -1,32 +1,35 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable, take, tap } from 'rxjs';
 import { IndexElement } from '../models/index-element.model';
-import { collection, collectionData, Firestore, orderBy, query } from '@angular/fire/firestore';
+import { collection, collectionData,  orderBy, query } from '@angular/fire/firestore';
 import { SpinnerService } from './spinner.service';
+import { FiredataService } from './firedata.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IndexElementsService {
+export class IndexElementsService extends FiredataService<IndexElement, IndexElement> {
 
-  private firestore = inject(Firestore);
   private spinnerService: SpinnerService = inject(SpinnerService);
 
-  getCollection(): Observable<IndexElement[]> {
-    return this.getCollections()
+  constructor(){
+    super("indexElements")
+  }
+  
+  get data$(): Observable<IndexElement[]> {
+    return this.getCollection()
     .pipe(
-      take(1),
-      tap(value => this.spinnerService.emitLoadedDta(true)),
       map(array=>array.map(element => {
           let indexElement = element as IndexElement;
           indexElement.url = indexElement.url.replace("embed/","watch?v=");
           return indexElement;
-      }))
+      })),
+      tap(value => this.spinnerService.emitLoadedDta(true))
     );
   }
 
   // Obtener colección
-  getCollections(): Observable<any[]> {
+  override getCollection(): Observable<any[]> {
     this.spinnerService.emitLoadedDta(false);
     const itemsRef = collection(this.firestore, "indexElements");
     const q = query(itemsRef, orderBy("order", "asc")); // 👈 Ordena por campo

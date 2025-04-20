@@ -1,20 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { Contact, FirestoreContact } from '../models/contact.model';
 import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
-import { collection, collectionData, doc, DocumentData, Firestore, getDoc, query } from '@angular/fire/firestore';
+import {  DocumentData } from '@angular/fire/firestore';
 import { LinkInfoService } from './link-info.service';
+import { FiredataService } from './firedata.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService {
+export class ContactService extends FiredataService<Contact, FirestoreContact> {
 
-  private readonly name = "contact";
-
-  private firestore = inject(Firestore);
   private linkService = inject(LinkInfoService);
-  
-  private readonly converter = {
+
+  protected override converter = {
     toFirestore(contact: FirestoreContact): DocumentData {
       return {
         email: contact.email,
@@ -32,8 +30,23 @@ export class ContactService {
     }
   };
 
+  protected override async convertToOrigin(firestoreObjet: FirestoreContact): Promise<Contact> {
+    const email = await this.linkService.getByDocumentId(firestoreObjet.email.id);
+    const whatsApp = await this.linkService.getByDocumentId(firestoreObjet.whatsApp.id);
+    const instagram = await this.linkService.getByDocumentId(firestoreObjet.instagram.id);
+    return {
+      email: email,
+      whatsApp: whatsApp,
+      instagram: instagram
+    } as Contact;
+  }
+
+  constructor() {
+    super("contact")
+  }
+
   getContacts(): Observable<Contact> {
-    return this.getCollections()
+    return this.getFirst()
       .pipe(
         switchMap(firestoreContact => {
           // Convertimos todas las promesas en observables
@@ -52,29 +65,5 @@ export class ContactService {
       );
   }
 
-  private getCollections(): Observable<FirestoreContact> {
-    const itemsRef = collection(this.firestore, this.name);
-    const q = query(itemsRef); // 👈 Ordena por campo
-    return collectionData(q, { idField: 'id' }).pipe(map(collection => collection[0] as FirestoreContact));
-  }
-
-  async getByDocumentId(docId: string): Promise<Contact> {
-    const documentRef = doc(this.firestore, this.name + "/" + docId).withConverter(this.converter);
-    const document = await getDoc(documentRef);
-
-    // Combinamos todos los observables
-    if (document.exists()) {
-      const email = await this.linkService.getByDocumentId(document.data()!.email.id);
-      const whatsApp = await this.linkService.getByDocumentId(document.data()!.whatsApp.id);
-      const instagram = await this.linkService.getByDocumentId(document.data()!.instagram.id);
-      return {
-        email: email,
-        whatsApp: whatsApp,
-        instagram: instagram
-      } as Contact;
-    }
-
-    throw Error("No existe documento.");
-  }
 
 }

@@ -12,26 +12,26 @@ import { SpinnerService } from '../../services/spinner.service';
   imports: [NgFor, NgIf, RouterModule, NgClass],
   templateUrl: './header.component.html',
   styleUrls: [
-    "./header.component.scss",
-    "__phone_header.component.scss",
-    "__tablet_header.component.scss",
+    "_desktop_header.component.scss",
+    "_phone_header.component.scss",
+    "_tablet_header.component.scss",
   ]
 })
 
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  private headerService: HeaderService = inject(HeaderService);
-  private spinnerService: SpinnerService = inject(SpinnerService);
+  private readonly headerService: HeaderService = inject(HeaderService);
+  private readonly spinnerService: SpinnerService = inject(SpinnerService);
+
+  private hasExpandedSubcription?: Subscription;
 
   videoSource?: String;
-
   headerInfo !: HeaderInfo;
-  videoLoaded = false;
+  videoLoaded : boolean = false;
   hasExpanded!: boolean;
-  hasExpandedSubcription?: Subscription;
+
 
   @ViewChild('videoElement') videoRef?: ElementRef;
-
 
   constructor(private router: Router, private expandElementService: ExpandElementService) {
   }
@@ -48,7 +48,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.spinnerService.emitLoadedVideo(false);
+
     this.headerInfo = this.headerService.getHeaderInfo();
     this.videoSource = this.headerService.getHeaderInfo().videoPlayBack;
 
@@ -57,15 +59,30 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  playVideoElement(videoElementRef: ElementRef<HTMLVideoElement>) {
+  private playVideoElement(videoElementRef: ElementRef<HTMLVideoElement>) {
     const video: HTMLVideoElement = videoElementRef.nativeElement;
 
     video.src = this.headerInfo.videoPlayBack;
 
-    video.onloadeddata = () => {
+
+    video.onloadeddata = async () => {
+
       this.videoLoaded = true;
       this.spinnerService.emitLoadedVideo(this.videoLoaded);
-      video.play();
+
+      try {
+        await video.play();
+        // Añade esto para verificar si el video está realmente reproduciéndose
+        video.hidden = false;
+      } catch (err) {
+        console.warn('Autoplay bloqueado:', err);
+      }
+      // Maneja errores de carga
+      video.onerror = () => {
+        console.error('Error al cargar el video');
+        this.videoLoaded = false;
+        this.spinnerService.emitLoadedVideo(this.videoLoaded);
+      };
     };
   }
 

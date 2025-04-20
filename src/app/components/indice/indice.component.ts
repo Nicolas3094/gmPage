@@ -10,9 +10,10 @@ import { IndexElementsService } from '../../services/index-elements.service';
   selector: 'app-indice',
   imports: [NgFor, ProjectElementComponent],
   templateUrl: './indice.component.html',
-  styleUrls: ['./indice.component.scss',
-    './_phone_indice.component.scss',
-    './_tablet_indice.component.scss']
+  styleUrls: [
+    '_desktop_indice.component.scss',
+    '_phone_indice.component.scss',
+    '_tablet_indice.component.scss']
 })
 export class IndiceComponent implements OnInit, OnDestroy {
 
@@ -31,7 +32,8 @@ export class IndiceComponent implements OnInit, OnDestroy {
   private indexElementsService: IndexElementsService = inject(IndexElementsService);
 
   constructor() {
-    this.subscription = this.indexElementsService.getCollection()
+    this.subscription = this.indexElementsService
+      .getCollection()
       .subscribe(value => {
         this.indexArray = value;
       })

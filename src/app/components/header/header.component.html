@@ -1,6 +1,6 @@
-<header [ngClass]="{'video-container' : !hasExpanded, 'video-container-expanded': hasExpanded}">
+<header [ngClass]="{'video-container-desktop': !hasExpanded, 'video-container-expanded-desktop': hasExpanded}">
 
-    <video *ngIf="!hasExpanded" class="video-background" autoplay muted loop playsinline #videoElement>
+    <video *ngIf="!hasExpanded" class="video-background" autoplay muted playsinline loop  #videoElement>
         <source [src]="videoSource" type="video/mp4" *ngIf="videoLoaded">
     </video>
 
@@ -29,4 +29,5 @@
                 src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">
         </div>
     </div>
+    
 </header>

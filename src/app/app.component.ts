@@ -4,12 +4,11 @@ import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { SpinnerService } from './services/spinner.service';
 import { Observable, Subscription } from 'rxjs';
-import { NgClass } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, NgClass, SpinnerComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -1,12 +1,14 @@
 @media only screen and (max-device-width: 767px) and ((orientation: portrait) or (orientation: landscape)) {
 
-    header.video-container, header.video-container-expanded {
+    header.video-container-desktop, header.video-container-expanded-desktop {
+        
         display: flex;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        padding-bottom: 0;
         margin-left: 0;
         padding-left: 0;
 
-        .content-over-video {
+        div.content-over-video {
             display: grid;
             grid-template-columns: 25% 54% 20%;
             max-width: 100%;
@@ -53,14 +55,16 @@
         
     }
 
-    header.video-container {
+    header.video-container-desktop {
+        display: flex;
         width: 100%;
-        height: 70vh;
+        max-height: 100vh;
+        margin-bottom: -40px;
 
-
-        .video-background {
+        video.video-background {
             object-fit: fill;
             width: 100%;
+            top: -60px;
         }
     }
 }

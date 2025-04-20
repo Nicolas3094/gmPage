@@ -12,9 +12,10 @@ const youtubeUrlRegex = /^(https:\/\/)(www\.youtube\.com\/watch\?)(v=.+)$/;
   selector: 'app-project-element',
   imports: [NgIf, NgClass, NgFor, FormattedLinkComponent, ElementImageComponent],
   templateUrl: './project-element.component.html',
-  styleUrls: ['./project-element.component.scss',
-    './_mobile_project-element.component.scss',
-    './_tablet_project-element.component.scss']
+  styleUrls: [
+    '_desktop_project-element.component.scss',
+    '_mobile_project-element.component.scss',
+    '_tablet_project-element.component.scss']
 })
 export class ProjectElementComponent implements OnInit {
 

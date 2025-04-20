@@ -7,9 +7,9 @@ import { FooterService } from '../../services/footer.service';
   standalone: true,
   selector: 'app-footer',
   styleUrls: [
-    "./footer.component.scss",
-    "./_mobile_footer.component.scss",
-    "./_tablet_footer.component.scss"
+    "_desktop_footer.component.scss",
+    "_mobile_footer.component.scss",
+    "_tablet_footer.component.scss"
   ],
   imports: [NgFor],
   templateUrl: './footer.component.html'

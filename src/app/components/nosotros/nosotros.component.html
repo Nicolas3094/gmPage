@@ -1,0 +1,20 @@
+<ng-container *ngIf="nosotros">
+
+    <div class="title">
+        <p>{{nosotros.title}}</p>
+        <p>Contact</p>
+    </div>
+
+    <app-contact></app-contact>
+
+    <div class="descripcion">
+        <span *ngFor="let description of nosotros.descriptions">
+            <p>{{description}}</p>
+        </span>
+
+        <div class="contactDevice" >
+            <app-contact></app-contact>
+        </div>
+    </div>
+
+</ng-container>

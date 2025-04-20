@@ -1,4 +1,4 @@
-<footer>
+<footer *ngIf="dataloaded">
 
     <div class="nosotros">
 
@@ -8,9 +8,15 @@
         </div>
 
 
-        <div class="contact">
-            <p *ngFor="let contacto of footerInfo.nosotros.contact">
-                <a (click)="handleContact(contacto.url )">{{contacto.title}}</a>
+        <div class="contact" *ngIf="footerInfo.nosotros.contact as contact">
+            <p>
+                <a (click)="handleContact(contact.email.url)">{{contact.email.title}}</a>
+            </p>
+            <p>
+                <a (click)="handleContact(contact.instagram.url)">{{contact.instagram.title}}</a>
+            </p>
+            <p>
+                <a (click)="handleContact(contact.whatsApp.url)">{{contact.whatsApp.title}}</a>
             </p>
         </div>
 
@@ -19,9 +25,15 @@
                 <p>{{description}}</p>
             </span>
 
-            <div class="contactDevice">
-                <p *ngFor="let contacto of footerInfo.nosotros.contact">
-                    <a (click)="handleContact(contacto.url )">{{contacto.title}}</a>
+            <div class="contactDevice" *ngIf="footerInfo.nosotros.contact as contact">
+                <p>
+                    <a (click)="handleContact(contact.email.url)">{{contact.email.title}}</a>
+                </p>
+                <p>
+                    <a (click)="handleContact(contact.instagram.url)">{{contact.instagram.title}}</a>
+                </p>
+                <p>
+                    <a (click)="handleContact(contact.whatsApp.url)">{{contact.whatsApp.title}}</a>
                 </p>
             </div>
         </div>

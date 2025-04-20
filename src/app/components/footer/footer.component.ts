@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FooterInfo } from '../../models/footer-info.model';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FooterService } from '../../services/footer.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -11,19 +12,30 @@ import { FooterService } from '../../services/footer.service';
     "_mobile_footer.component.scss",
     "_tablet_footer.component.scss"
   ],
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './footer.component.html'
 })
-export class FooterComponent {
+export class FooterComponent implements OnDestroy {
 
   footerService: FooterService = inject(FooterService);
   footerInfo!: FooterInfo;
 
-  clientsInfo: String;
+  clientsInfo!: String;
+
+  dataloaded: boolean = false;
+
+  private subcription !: Subscription;
+
+  ngOnDestroy(): void {
+    this.subcription.unsubscribe();
+  }
 
   constructor() {
-    this.footerInfo = this.footerService.getFooterInfo();
-    this.clientsInfo = this.footerInfo.clientes.clients.map(val => val.title).join(", ");
+    this.subcription = this.footerService.footerInfo$.subscribe(value => {
+      this.footerInfo = value;
+      this.clientsInfo = value.clientes.clients.map(val => val.title).join(", ");
+      this.dataloaded = true;
+    });
   }
 
   handleContact(url?: string) {

@@ -1,33 +1,26 @@
 @media only screen and (max-device-width: 767px) and ((orientation: portrait) or (orientation: landscape)) {
 
-    header.video-container-desktop, header.video-container-expanded-desktop {
-        
-        display: flex;
-        margin-bottom: 0;
-        padding-bottom: 0;
-        margin-left: 0;
-        padding-left: 0;
 
-        div.content-over-video {
-            display: grid;
-            grid-template-columns: 25% 54% 20%;
-            max-width: 100%;
-            width: 100%;
-            padding: {
-                top: 10px;
-                left: 10px;
-                right: 10px;
-                bottom: 0;
-            }
-            margin: 0;
+    header.video-container-desktop {
+        height: 100vh;
+        margin-bottom: -330px;
 
+        .video-background {
+            top: -60px;
+            height: 70%;
+        }
+
+        .content-over-video {
+            grid-template-columns: 21% 45% 33%;
 
             .detalles {
-                margin-left: 0;
-                max-width: 60%;
-                
-                :first-child::after {
-                    content: "®";
+                :first-child {
+                    width: 100%;
+
+                    &::after {
+                        content: "®";
+
+                    }
                 }
 
                 :last-child {
@@ -35,36 +28,10 @@
                 }
             }
 
-            .listado {
-                margin: 0;
-            }
-
-            .filler {
-                display: none;
-                flex: none;
-            }
-
             .menu {
                 display: none;
             }
 
-            .logo {
-                margin: 0;
-            }
-        }
-        
-    }
-
-    header.video-container-desktop {
-        display: flex;
-        width: 100%;
-        max-height: 100vh;
-        margin-bottom: -40px;
-
-        video.video-background {
-            object-fit: fill;
-            width: 100%;
-            top: -60px;
         }
     }
 }

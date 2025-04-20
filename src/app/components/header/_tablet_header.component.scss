@@ -1,25 +1,4 @@
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
 
-    header.video-container-desktop {
-        padding-bottom: 0;
-        width: 100%;
-        height: 480px;
-        margin-bottom: -20px;
-
-        div.content-over-video {
-            grid-template-columns: 25% 25% 25% 25%;
-
-            .detalles :first-child::after {
-                content: "®";
-
-            }
-
-        }
-
-        video.video-background {
-            object-fit: fill;
-            width: 100%;
-            top: -40px;
-        }
-    }
+    
 }

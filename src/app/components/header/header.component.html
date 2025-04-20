@@ -1,8 +1,6 @@
-<header [ngClass]="{'video-container-desktop': !hasExpanded, 'video-container-expanded-desktop': hasExpanded}">
+<header class="video-container-desktop" *ngIf="dataLoaded">
 
-    <video *ngIf="!hasExpanded" class="video-background" autoplay muted playsinline loop  #videoElement>
-        <source [src]="videoSource" type="video/mp4" *ngIf="videoLoaded">
-    </video>
+    <img class="video-background" [src]="videoSource" alt="Background GIF" #videoElement>
 
     <div class="content-over-video">
 
@@ -18,16 +16,16 @@
             </p>
         </div>
 
-        <div class="menu">
-            <p *ngFor="let contacto of headerInfo.menu">
-                <a (click)="handleContact(contacto.url)">{{contacto.title}}</a>
-            </p>
-            </div>
+        <div class="menu" *ngIf="headerInfo.contact as contacto">
+            <p><a (click)="handleContact(contacto.email.url)">{{contacto.email.title}}</a></p>
+            <p><a (click)="handleContact(contacto.instagram.url)">{{contacto.instagram.title}}</a></p>
+            <p><a (click)="handleContact(contacto.whatsApp.url)">{{contacto.whatsApp.title}}</a></p>
+        </div>
 
         <div class="logo">
             <img
                 src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">
         </div>
     </div>
-    
+
 </header>

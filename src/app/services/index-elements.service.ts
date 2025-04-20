@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, take, tap } from 'rxjs';
 import { IndexElement } from '../models/index-element.model';
-import { collection, collectionData, Firestore, Index, orderBy, query } from '@angular/fire/firestore';
+import { collection, collectionData, Firestore, orderBy, query } from '@angular/fire/firestore';
 import { SpinnerService } from './spinner.service';
 
 @Injectable({
@@ -15,6 +15,7 @@ export class IndexElementsService {
   getCollection(): Observable<IndexElement[]> {
     return this.getCollections()
     .pipe(
+      take(1),
       tap(value => this.spinnerService.emitLoadedDta(true)),
       map(array=>array.map(element => {
           let indexElement = element as IndexElement;

@@ -1,9 +1,17 @@
-import { Linkinfo } from "./linkinfo.model";
+import { DocumentReference } from "firebase/firestore";
+import { Contact } from "./contact.model";
 
 export interface HeaderInfo {
     detalles:Array<String>;
     listado:Array<String>;
-    menu: Array<Linkinfo>;
+    contact: Contact;
     videoPlayBack: string;
-    logo:String;
+}
+
+
+export interface FirestoreHeaderInfo {
+    detalles: Array<String>;
+    listado: Array<String>;
+    contact: DocumentReference<Contact>;
+    videoPlayBack: string;
 }

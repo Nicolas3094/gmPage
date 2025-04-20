@@ -1,15 +1,14 @@
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HeaderInfo } from '../../models/header-info.model';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { ExpandElementService } from '../../services/expand-element.service';
 import { Subscription } from 'rxjs';
 import { HeaderService } from '../../services/header.service';
 import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
   selector: 'app-header',
-  imports: [NgFor, NgIf, RouterModule, NgClass],
+  imports: [NgFor, RouterModule, NgIf],
   templateUrl: './header.component.html',
   styleUrls: [
     "_desktop_header.component.scss",
@@ -20,24 +19,25 @@ import { SpinnerService } from '../../services/spinner.service';
 
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  private readonly headerService: HeaderService = inject(HeaderService);
-  private readonly spinnerService: SpinnerService = inject(SpinnerService);
+  private headerService: HeaderService = inject(HeaderService);
+  private spinnerService: SpinnerService = inject(SpinnerService);
+  private router: Router = inject(Router);
 
   private hasExpandedSubcription?: Subscription;
 
   videoSource?: String;
   headerInfo !: HeaderInfo;
-  videoLoaded : boolean = false;
-  hasExpanded!: boolean;
+  videoLoaded: boolean = false;
+  dataLoaded: boolean = false;
+  hasExpanded: boolean = false;
 
 
   @ViewChild('videoElement') videoRef?: ElementRef;
 
-  constructor(private router: Router, private expandElementService: ExpandElementService) {
+  constructor() {
   }
 
   ngAfterViewInit(): void {
-
     if (this.videoRef) {
       this.playVideoElement(this.videoRef)
     }
@@ -48,41 +48,24 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    this.spinnerService.emitLoadedVideo(false);
-
-    this.headerInfo = this.headerService.getHeaderInfo();
-    this.videoSource = this.headerService.getHeaderInfo().videoPlayBack;
-
-    this.hasExpandedSubcription = this.expandElementService.events$.subscribe(value => {
-      this.hasExpanded = value.isActive;
-    });
+    this.hasExpandedSubcription = this.headerService.headerInfo$
+      .subscribe(value => {
+        this.headerInfo = value;
+        this.videoSource = value.videoPlayBack;
+        this.dataLoaded = true;
+        this.spinnerService.emitLoadedVideo(true);
+      });
   }
 
-  private playVideoElement(videoElementRef: ElementRef<HTMLVideoElement>) {
-    const video: HTMLVideoElement = videoElementRef.nativeElement;
+  private playVideoElement(videoElementRef: ElementRef<HTMLImageElement>) {
+    const video: HTMLImageElement = videoElementRef.nativeElement;
 
     video.src = this.headerInfo.videoPlayBack;
 
+    this.spinnerService.emitLoadedVideo(true);
 
     video.onloadeddata = async () => {
-
       this.videoLoaded = true;
-      this.spinnerService.emitLoadedVideo(this.videoLoaded);
-
-      try {
-        await video.play();
-        // Añade esto para verificar si el video está realmente reproduciéndose
-        video.hidden = false;
-      } catch (err) {
-        console.warn('Autoplay bloqueado:', err);
-      }
-      // Maneja errores de carga
-      video.onerror = () => {
-        console.error('Error al cargar el video');
-        this.videoLoaded = false;
-        this.spinnerService.emitLoadedVideo(this.videoLoaded);
-      };
     };
   }
 

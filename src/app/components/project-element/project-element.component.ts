@@ -48,7 +48,6 @@ export class ProjectElementComponent implements OnInit {
         if (result[3] != null) {
           this.idGroup = result[3];
         }
-
       }
     }
   }

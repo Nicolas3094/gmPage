@@ -4,19 +4,32 @@ $border: 0.5mm solid rgba(207, 207, 207, 255);
     display: none !important; // Oculta cualquier clase que incluya "mobile"
 }
 
-header.video-container-desktop,
-header.video-container-expanded-desktop {
-
+header.video-container-desktop {
     width: 100%;
-    height: 90vh;
     overflow: hidden;
-    isolation: isolate; // Esto crea un nuevo stacking context
+    /* Ajusta según necesites */
+    color: white;
+    /* Para que el texto sea legible */
+    padding: 0;
+    margin-bottom: -80px;
 
-    
+    p {
+        color: white;
+    }
+
+    .video-background {
+        width: 100%;
+        position: relative;
+        top: -90px;
+    }
+
     .content-over-video {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
         width: 100%;
         display: grid;
-
         grid-template-columns: 14% 66% 15% 5%;
         justify-content: right;
         margin-top: 10px;
@@ -46,48 +59,8 @@ header.video-container-expanded-desktop {
             img {
                 width: inherit;
                 height: inherit;
+                filter: invert(1);
             }
-        }
-    }
-}
-
-header.video-container-expanded-desktop {
-    margin-bottom: 50px;
-}
-
-header.video-container-desktop {
-    padding-bottom: 0;
-    margin-bottom: -10px;
-    position: relative;
-    /* Ajusta según necesites */
-    overflow: hidden;
-
-    p {
-        color: white;
-    }
-
-    video.video-background {
-        width: 100%;
-        height: 100%; // Asegura que cubra la altura del contenedor
-        object-fit: cover; // Mantiene la proporción y cubre el espacio
-        position: absolute; // Para que no afecte el flujo del contenido
-        top: -30px;
-        left: 0;
-        z-index: -1;
-        transform: translateZ(0);
-        backface-visibility: hidden;
-        will-change: transform;
-        perspective: 1000px;
-
-    }
-
-    div.content-over-video {
-        z-index: 1;
-        position: relative;
-        top: auto;
-        .logo img {
-            color: inherit;
-            filter: invert(1);
         }
     }
 }

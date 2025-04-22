@@ -2,7 +2,8 @@ $border: 0.5mm solid rgba(207, 207, 207, 255);
 
 @media (max-device-width: 767px) or ((max-device-height: 767px)) {
     footer {
-        .nosotros {
+        padding-bottom: 20px;
+        app-nosotros {
             padding: 5px;
             padding-left: 0px;
             grid-template-columns: 25% 1fr;
@@ -30,7 +31,7 @@ $border: 0.5mm solid rgba(207, 207, 207, 255);
             }
         }
 
-        .clientes {
+        app-clients {
             padding: 5px;
             padding-top: 50;
             grid-template-columns: 25% 75%;

@@ -9,20 +9,23 @@ import { SpinnerService } from '../../services/spinner.service';
   selector: 'app-clients',
   imports: [NgFor, NgIf],
   templateUrl: './clients.component.html',
-  styleUrl: './clients.component.scss'
+  styleUrls: [
+    './_desktop_clients.component.scss',
+    './_phone_clients.component.scss',
+    './_tablet_clients.component.scss']
 })
 export class ClientsComponent implements OnInit, OnDestroy {
-  
-  clientes ?: Clientes;
+
+  clientes?: Clientes;
   clientsInfo!: String;
 
-  private clientsService : ClientsService = inject(ClientsService);
-  private spinnerService : SpinnerService = inject(SpinnerService);
+  private clientsService: ClientsService = inject(ClientsService);
+  private spinnerService: SpinnerService = inject(SpinnerService);
   private sub = new Subscription();
 
   ngOnInit(): void {
-    this.sub = this.clientsService.clinets$.subscribe(value=>{
-      this.clientes=value;
+    this.sub = this.clientsService.clinets$.subscribe(value => {
+      this.clientes = value;
       this.clientsInfo = value.clients.map(val => val.title).join(", ");
       this.spinnerService.emitFooterLoadedDta(true);
     });

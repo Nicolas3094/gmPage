@@ -3,7 +3,11 @@
 
     header.video-container-desktop {
         height: 100vh;
-        margin-bottom: -330px;
+        margin-bottom: -75%;
+
+        @media (max-device-width: 375px) {
+            margin-bottom: -65%;
+        }
 
         .video-background {
             top: -60px;

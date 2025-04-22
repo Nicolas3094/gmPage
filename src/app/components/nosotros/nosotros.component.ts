@@ -9,7 +9,10 @@ import { Subscription } from 'rxjs';
   selector: 'app-nosotros',
   imports: [NgIf, NgFor, ContactComponent],
   templateUrl: './nosotros.component.html',
-  styleUrl: './nosotros.component.scss'
+  styleUrls: ['./_desktop_nosotros.component.scss',
+    './_phone_nosotros.component.scss',
+    './_tablet_nosotros.component.scss'
+  ]
 })
 export class NosotrosComponent implements OnInit, OnDestroy{
   nosotros?: Nosotros;

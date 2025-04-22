@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HeaderInfo } from '../models/header-info.model';
 import { Observable } from 'rxjs';
-import { FiredataService } from './firedata.service';
+import { FirestoreRepository } from '../firedata.repository';
+import { HeaderInfo } from '../../../models/header-info.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HeaderService extends FiredataService<HeaderInfo, HeaderInfo> {
+export class FirestoreHeaderRepository extends FirestoreRepository<HeaderInfo, HeaderInfo> {
   
   constructor(){
     super("header");

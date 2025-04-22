@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContactService } from './contact.service';
+import { FirestoreHeaderRepository } from './header.repository';
 
-describe('ContactService', () => {
-  let service: ContactService;
+describe('HeaderService', () => {
+  let service: FirestoreHeaderRepository;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ContactService);
+    service = TestBed.inject(FirestoreHeaderRepository);
   });
 
   it('should be created', () => {

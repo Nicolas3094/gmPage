@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
-import { SpinnerService } from './services/spinner.service';
+import { SpinnerService } from './services/spinner/spinner.service';
 import { Observable, Subscription } from 'rxjs';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 

@@ -1,8 +1,8 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ContactService } from '../../services/contact.service';
 import { Contact } from '../../models/contact.model';
 import { Subscription } from 'rxjs';
 import { NgIf } from '@angular/common';
+import { FirestoreContactRepository } from '../../repositories/firestore/contact/firestore-contact.repository';
 
 @Component({
   selector: 'app-contact',
@@ -13,12 +13,12 @@ import { NgIf } from '@angular/common';
 export class ContactComponent implements OnInit , OnDestroy{
   
   private sub = new Subscription();
-  private contactService = inject(ContactService);
+  private contactRepository = inject(FirestoreContactRepository);
 
   contacto ?: Contact;
 
   ngOnInit(): void {
-    this.sub = this.contactService.getContacts().subscribe(value=>{
+    this.sub = this.contactRepository.getContacts().subscribe(value=>{
       this.contacto = value;
     })
   }

@@ -1,17 +1,17 @@
 import { inject, Injectable } from '@angular/core';
-import { Clientes, FirestoreClientes } from '../models/clientes.model';
+import { Clientes, FirestoreClientes } from '../../models/clientes.model';
 import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
-import { collection, collectionData, doc, DocumentData, Firestore, getDoc, query } from '@angular/fire/firestore';
-import { LinkInfoService } from './link-info.service';
-import { Linkinfo } from '../models/linkinfo.model';
-import { FiredataService } from './firedata.service';
+import {  DocumentData } from '@angular/fire/firestore';
+import { Linkinfo } from '../../models/linkinfo.model';
+import { FirestoreRepository } from '../firestore/firedata.repository';
+import { FirestoreLinkInfoRepository } from '../firestore/linkInfo/firestore-link-info.repositoy';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientsService extends FiredataService<Clientes, FirestoreClientes> {
+export class ClientsRepository extends FirestoreRepository<Clientes, FirestoreClientes> {
 
-  private readonly linkService = inject(LinkInfoService);
+  private readonly linkService = inject(FirestoreLinkInfoRepository);
 
   protected override converter = {
     toFirestore(clientes: FirestoreClientes): DocumentData {
@@ -29,6 +29,10 @@ export class ClientsService extends FiredataService<Clientes, FirestoreClientes>
     }
   };
 
+  constructor() {
+    super("clients");
+  }
+
   protected override async convertToOrigin(firestoreObjet: FirestoreClientes): Promise<Clientes> {
     let clientsArr: Array<Linkinfo> = [];
 
@@ -41,10 +45,6 @@ export class ClientsService extends FiredataService<Clientes, FirestoreClientes>
       title: firestoreObjet.title,
       clients: clientsArr
     } as Clientes;
-  }
-
-  constructor() {
-    super("clients");
   }
 
   get clinets$(): Observable<Clientes> {

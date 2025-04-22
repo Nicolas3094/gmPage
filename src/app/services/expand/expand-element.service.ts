@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ExpandedObject } from '../models/ExpandendObject.model';
+import { ExpandedObject } from '../../models/ExpandendObject.model';
 
 @Injectable({
   providedIn: 'root'

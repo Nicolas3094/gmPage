@@ -1,16 +1,16 @@
 import { inject, Injectable } from '@angular/core';
-import { Contact, FirestoreContact } from '../models/contact.model';
 import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
 import {  DocumentData } from '@angular/fire/firestore';
-import { LinkInfoService } from './link-info.service';
-import { FiredataService } from './firedata.service';
+import { FirestoreLinkInfoRepository } from '../linkInfo/firestore-link-info.repositoy';
+import { FirestoreRepository } from '../firedata.repository';
+import { Contact, FirestoreContact } from '../../../models/contact.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService extends FiredataService<Contact, FirestoreContact> {
+export class FirestoreContactRepository extends FirestoreRepository<Contact, FirestoreContact> {
 
-  private linkService = inject(LinkInfoService);
+  private linkService = inject(FirestoreLinkInfoRepository);
 
   protected override converter = {
     toFirestore(contact: FirestoreContact): DocumentData {

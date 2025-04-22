@@ -4,8 +4,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { Observable, Subscription } from 'rxjs';
 import { ProjectElementComponent } from '../project-element/project-element.component';
 import { ExpandedObject } from '../../models/ExpandendObject.model';
-import { IndexElementsService } from '../../services/index-elements.service';
-import { SpinnerService } from '../../services/spinner.service';
+import { SpinnerService } from '../../services/spinner/spinner.service';
+import { FirestoreIndexElementsRepository } from '../../repositories/firestore/index/firestore-index-elements.repository';
 
 @Component({
   selector: 'app-indice',
@@ -32,7 +32,7 @@ export class IndiceComponent implements OnInit, OnDestroy {
 
   loadedData : boolean = false;
 
-  private indexElementsService: IndexElementsService = inject(IndexElementsService);
+  private indexElementsRepository = inject(FirestoreIndexElementsRepository);
   private spinnerService: SpinnerService = inject(SpinnerService);
 
   constructor() {
@@ -44,7 +44,7 @@ export class IndiceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription = this.indexElementsService
+    this.subscription = this.indexElementsRepository
     .data$
     .subscribe(value => {
       this.indexArray = value;

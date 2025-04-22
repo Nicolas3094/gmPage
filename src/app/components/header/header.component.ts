@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {  Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HeaderInfo } from '../../models/header-info.model';
 import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { HeaderService } from '../../services/header.service';
-import { SpinnerService } from '../../services/spinner.service';
+import { SpinnerService } from '../../services/spinner/spinner.service';
 import { ContactComponent } from '../contact/contact.component';
+import { FirestoreHeaderRepository } from '../../repositories/firestore/header/header.repository';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +20,7 @@ import { ContactComponent } from '../contact/contact.component';
 
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  private headerService: HeaderService = inject(HeaderService);
+  private headerRepository = inject(FirestoreHeaderRepository);
   private spinnerService: SpinnerService = inject(SpinnerService);
   private router: Router = inject(Router);
 
@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.hasExpandedSubcription = this.headerService.headerInfo$
+    this.hasExpandedSubcription = this.headerRepository.headerInfo$
       .subscribe(value => {
         this.headerInfo = value;
         this.videoSource = value.videoPlayBack;

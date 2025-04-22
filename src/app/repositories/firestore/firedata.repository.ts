@@ -5,7 +5,7 @@ import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export abstract class FiredataService<T, D> {
+export abstract class FirestoreRepository<T, D> {
 
   protected firestore: Firestore = inject(Firestore);
   protected converter?: FirestoreDataConverter<D, DocumentData>;

@@ -2,8 +2,8 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ContactComponent } from '../contact/contact.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Nosotros } from '../../models/nosotros.model';
-import { NosotrosService } from '../../services/nosotros.service';
 import { Subscription } from 'rxjs';
+import { FirestoreNosotrosRepository } from '../../repositories/firestore/nosotros/firestore-nosotros.repository';
 
 @Component({
   selector: 'app-nosotros',
@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class NosotrosComponent implements OnInit, OnDestroy{
   nosotros?: Nosotros;
 
-  nosotrosServices :NosotrosService= inject(NosotrosService);
+  private nosotrosRepository = inject(FirestoreNosotrosRepository);
 
   private sub =  new Subscription();
 
@@ -25,7 +25,7 @@ export class NosotrosComponent implements OnInit, OnDestroy{
     this.sub.unsubscribe();
   }
   ngOnInit(): void {
-    this.sub = this.nosotrosServices.clinets$.subscribe(value => {
+    this.sub = this.nosotrosRepository.clinets$.subscribe(value => {
       this.nosotros = value;
     });
   }

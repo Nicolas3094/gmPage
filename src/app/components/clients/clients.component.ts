@@ -1,9 +1,9 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Clientes } from '../../models/clientes.model';
-import { ClientsService } from '../../services/clients.service';
 import { Subscription } from 'rxjs';
-import { SpinnerService } from '../../services/spinner.service';
+import { SpinnerService } from '../../services/spinner/spinner.service';
+import { FirestoreClientsRepository } from '../../repositories/firestore/clients/firestore-clients.repository';
 
 @Component({
   selector: 'app-clients',
@@ -19,12 +19,12 @@ export class ClientsComponent implements OnInit, OnDestroy {
   clientes?: Clientes;
   clientsInfo!: String;
 
-  private clientsService: ClientsService = inject(ClientsService);
+  private clientsRepository: FirestoreClientsRepository = inject(FirestoreClientsRepository);
   private spinnerService: SpinnerService = inject(SpinnerService);
   private sub = new Subscription();
 
   ngOnInit(): void {
-    this.sub = this.clientsService.clinets$.subscribe(value => {
+    this.sub = this.clientsRepository.clinets$.subscribe(value => {
       this.clientes = value;
       this.clientsInfo = value.clients.map(val => val.title).join(", ");
       this.spinnerService.emitFooterLoadedDta(true);

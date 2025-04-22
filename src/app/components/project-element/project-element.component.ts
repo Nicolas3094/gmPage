@@ -3,7 +3,7 @@ import { IndexElement } from '../../models/index-element.model';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormattedLinkComponent } from '../formatted-link/formatted-link.component';
 import { ElementImageComponent } from '../element-image/element-image.component';
-import { ExpandElementService } from '../../services/expand-element.service';
+import { ExpandElementService } from '../../services/expand/expand-element.service';
 import { ExpandedObject } from '../../models/ExpandendObject.model';
 
 const youtubeUrlRegex = /^(https:\/\/)(www\.youtube\.com\/watch\?)(v=.+)$/;

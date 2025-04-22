@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LinkInfoService } from './link-info.service';
+import { FirestoreLinkInfoRepository } from './firestore-link-info.repositoy';
 
 describe('LinkInfoService', () => {
-  let service: LinkInfoService;
+  let service: FirestoreLinkInfoRepository;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LinkInfoService);
+    service = TestBed.inject(FirestoreLinkInfoRepository);
   });
 
   it('should be created', () => {

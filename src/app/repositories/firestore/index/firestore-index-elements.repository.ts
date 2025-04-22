@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, take, tap } from 'rxjs';
-import { IndexElement } from '../models/index-element.model';
+import { map, Observable, tap } from 'rxjs';
 import { collection, collectionData,  orderBy, query } from '@angular/fire/firestore';
-import { SpinnerService } from './spinner.service';
-import { FiredataService } from './firedata.service';
+import { FirestoreRepository } from '../firedata.repository';
+import { IndexElement } from '../../../models/index-element.model';
+import { SpinnerService } from '../../../services/spinner/spinner.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IndexElementsService extends FiredataService<IndexElement, IndexElement> {
+export class FirestoreIndexElementsRepository extends FirestoreRepository<IndexElement, IndexElement> {
 
   private spinnerService: SpinnerService = inject(SpinnerService);
 

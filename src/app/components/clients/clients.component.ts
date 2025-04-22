@@ -3,7 +3,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Clientes } from '../../models/clientes.model';
 import { Subscription } from 'rxjs';
 import { SpinnerService } from '../../services/spinner/spinner.service';
-import { FirestoreClientsRepository } from '../../repositories/firestore/clients/firestore-clients.repository';
+import { ClientsService } from '../../services/clients/clients.service';
 
 @Component({
   selector: 'app-clients',
@@ -14,24 +14,19 @@ import { FirestoreClientsRepository } from '../../repositories/firestore/clients
     './_phone_clients.component.scss',
     './_tablet_clients.component.scss']
 })
-export class ClientsComponent implements OnInit, OnDestroy {
+export class ClientsComponent implements OnInit {
 
   clientes?: Clientes;
+
   clientsInfo!: String;
 
-  private clientsRepository: FirestoreClientsRepository = inject(FirestoreClientsRepository);
-  private spinnerService: SpinnerService = inject(SpinnerService);
-  private sub = new Subscription();
+  private clientService: ClientsService = inject(ClientsService);
+
 
   ngOnInit(): void {
-    this.sub = this.clientsRepository.clinets$.subscribe(value => {
-      this.clientes = value;
-      this.clientsInfo = value.clients.map(val => val.title).join(", ");
-      this.spinnerService.emitFooterLoadedDta(true);
-    });
+    this.clientes = this.clientService.getData();
+
+    this.clientsInfo = this.clientService.getData().clients.map(val => val.title).join(", ");
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
 }

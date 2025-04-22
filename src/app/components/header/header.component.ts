@@ -1,11 +1,9 @@
-import {  Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {  Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { HeaderInfo } from '../../models/header-info.model';
 import { NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { SpinnerService } from '../../services/spinner/spinner.service';
 import { ContactComponent } from '../contact/contact.component';
-import { FirestoreHeaderRepository } from '../../repositories/firestore/header/header.repository';
+import { HeaderService } from '../../services/header/header.service';
 
 @Component({
   selector: 'app-header',
@@ -18,39 +16,23 @@ import { FirestoreHeaderRepository } from '../../repositories/firestore/header/h
   ]
 })
 
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
-  private headerRepository = inject(FirestoreHeaderRepository);
-  private spinnerService: SpinnerService = inject(SpinnerService);
-  private router: Router = inject(Router);
-
-  private hasExpandedSubcription?: Subscription;
+  private heeaderService = inject(HeaderService);
+  private router = inject(Router);
 
   videoSource?: String;
   headerInfo !: HeaderInfo;
   dataLoaded: boolean = false;
   hasExpanded: boolean = false;
 
-
   @ViewChild('videoElement') videoRef?: ElementRef;
 
-  constructor() {
-  }
-
-
-
-  ngOnDestroy(): void {
-    this.hasExpandedSubcription?.unsubscribe();
-  }
-
   ngOnInit() {
-    this.hasExpandedSubcription = this.headerRepository.headerInfo$
-      .subscribe(value => {
-        this.headerInfo = value;
-        this.videoSource = value.videoPlayBack;
-        this.dataLoaded = true;
-        this.spinnerService.emitHeaderLoadedDta(true);
-      });
+    const value = this.heeaderService.getData();
+    this.headerInfo = value;
+    this.videoSource = value.videoPlayBack;
+    this.dataLoaded = true;
   }
   onIndex() {
     console.log("index");

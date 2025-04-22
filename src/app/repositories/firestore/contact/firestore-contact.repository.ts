@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
+import { forkJoin, from, map, Observable, of, switchMap } from 'rxjs';
 import {  DocumentData } from '@angular/fire/firestore';
 import { FirestoreLinkInfoRepository } from '../linkInfo/firestore-link-info.repositoy';
 import { FirestoreRepository } from '../firedata.repository';
@@ -9,6 +9,13 @@ import { Contact, FirestoreContact } from '../../../models/contact.model';
   providedIn: 'root'
 })
 export class FirestoreContactRepository extends FirestoreRepository<Contact, FirestoreContact> {
+
+  override getColection(): Observable<Contact[]> {
+   return this.getContacts().pipe(map(el => [el]));
+  }
+  override getSingle(): Observable<Contact> {
+    return this.getContacts();
+  }
 
   private linkService = inject(FirestoreLinkInfoRepository);
 
@@ -48,21 +55,22 @@ export class FirestoreContactRepository extends FirestoreRepository<Contact, Fir
   getContacts(): Observable<Contact> {
     return this.getFirst()
       .pipe(
-        switchMap(firestoreContact => {
-          // Convertimos todas las promesas en observables
-          const email$ = from(this.linkService.getByDocumentId(firestoreContact.email.id));
-          const whatsApp$ = from(this.linkService.getByDocumentId(firestoreContact.whatsApp.id));
-          const instagram$ = from(this.linkService.getByDocumentId(firestoreContact.instagram.id));
-          // Combinamos todos los observables
-          return forkJoin([email$, whatsApp$, instagram$]).pipe(
-            map(([email, whatsApp, instagram]) => ({
-              email,
-              whatsApp: whatsApp,
-              instagram
-            } as Contact))
-          )
-        })
+        switchMap(firestoreContact => this.forkJoinFireData(firestoreContact))
       );
+  }
+
+
+  private forkJoinFireData(firestoreContact : FirestoreContact){
+    const email$ = from(this.linkService.getByDocumentId(firestoreContact.email.id));
+    const whatsApp$ = from(this.linkService.getByDocumentId(firestoreContact.whatsApp.id));
+    const instagram$ = from(this.linkService.getByDocumentId(firestoreContact.instagram.id));
+    return forkJoin([email$, whatsApp$, instagram$]).pipe(
+      map(([email, whatsApp, instagram]) => ({
+        email,
+        whatsApp: whatsApp,
+        instagram
+      } as Contact))
+    )
   }
 
 

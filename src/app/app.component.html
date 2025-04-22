@@ -1,5 +1,7 @@
-<app-header></app-header>
-<router-outlet />
-<app-footer></app-footer>
+<ng-container *ngIf="showData">
+    <app-header></app-header>
+    <router-outlet />
+    <app-footer></app-footer>
+</ng-container>
 
 <app-spinner [isLoading]="shouldShowSpinner"></app-spinner>

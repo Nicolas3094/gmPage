@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ProjectElementComponent } from '../project-element/project-element.component';
 import { ExpandedObject } from '../../models/ExpandendObject.model';
 import { SpinnerService } from '../../services/spinner/spinner.service';
-import { FirestoreIndexElementsRepository } from '../../repositories/firestore/index/firestore-index-elements.repository';
+import { IndexElementsService } from '../../services/indexElements/index-elements.service';
 
 @Component({
   selector: 'app-indice',
@@ -16,7 +16,7 @@ import { FirestoreIndexElementsRepository } from '../../repositories/firestore/i
     '_phone_indice.component.scss',
     '_tablet_indice.component.scss']
 })
-export class IndiceComponent implements OnInit, OnDestroy {
+export class IndiceComponent implements OnInit{
 
   itemExpanded: boolean = false;
 
@@ -28,29 +28,15 @@ export class IndiceComponent implements OnInit, OnDestroy {
 
   indexArray !: Array<IndexElement>;
 
-  subscription !: Subscription;
-
   loadedData : boolean = false;
 
-  private indexElementsRepository = inject(FirestoreIndexElementsRepository);
-  private spinnerService: SpinnerService = inject(SpinnerService);
+  private indexElementsService = inject(IndexElementsService);
 
-  constructor() {
-   
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 
   ngOnInit(): void {
-    this.subscription = this.indexElementsRepository
-    .data$
-    .subscribe(value => {
-      this.indexArray = value;
-      this.loadedData = true;
-      this.spinnerService.emitLoadedDta(true);
-    })
+    const value = this.indexElementsService.getList();
+    this.loadedData = true;
+    this.indexArray = value;
   }
 
   toggleExpand(expandedObject: ExpandedObject) {

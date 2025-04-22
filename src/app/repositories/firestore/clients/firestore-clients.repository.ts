@@ -11,6 +11,14 @@ import { Linkinfo } from '../../../models/linkinfo.model';
 })
 export class FirestoreClientsRepository extends FirestoreRepository<Clientes, FirestoreClientes> {
 
+  override getColection(): Observable<Clientes[]> {
+    return this.clinets$.pipe(map(cliente => [cliente]));
+  }
+
+  override getSingle() : Observable<Clientes> {
+    return this.clinets$;
+  }
+
   private readonly linkService = inject(FirestoreLinkInfoRepository);
 
   protected override converter = {

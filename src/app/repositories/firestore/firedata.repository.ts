@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { collection, collectionData, doc, DocumentData, Firestore, FirestoreDataConverter, getDoc, query } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
+import { IRepository } from '../irepository.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class FirestoreRepository<T, D> {
+export abstract class FirestoreRepository<T, D> implements IRepository<T> {
 
   protected firestore: Firestore = inject(Firestore);
   protected converter?: FirestoreDataConverter<D, DocumentData>;
@@ -36,18 +37,25 @@ export abstract class FirestoreRepository<T, D> {
 
     throw Error("No existe documento.");
   }
+  protected convertToOrigin(firestoreObjet: D): Promise<T> | undefined {
+    return undefined;
+  }
 
-  protected getCollection(): Observable<any[]> {
+  getCollection(): Observable<any[]> {
     const itemsRef = collection(this.firestore, this.name);
     const q = query(itemsRef); // 👈 Ordena por campo
     return collectionData(q, { idField: 'id' });
   }
 
-  protected convertToOrigin(firestoreObjet: D): Promise<T> | undefined {
-    return undefined;
-  }
 
   getFirst(): Observable<D> {
     return this.getCollection().pipe(map(collection => collection[0] as D));
   }
+
+  async fecthAll(): Promise<T[]> {
+    return await firstValueFrom(this.getColection());
+  }
+
+  abstract getColection(): Observable<T[]>;
+  abstract getSingle(): Observable<T>;
 }

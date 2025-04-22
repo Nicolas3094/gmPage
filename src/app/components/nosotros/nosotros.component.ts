@@ -1,9 +1,8 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject,  OnInit } from '@angular/core';
 import { ContactComponent } from '../contact/contact.component';
 import { NgFor, NgIf } from '@angular/common';
 import { Nosotros } from '../../models/nosotros.model';
-import { Subscription } from 'rxjs';
-import { FirestoreNosotrosRepository } from '../../repositories/firestore/nosotros/firestore-nosotros.repository';
+import { NosotrosService } from '../../services/nosotros/nosotros.service';
 
 @Component({
   selector: 'app-nosotros',
@@ -14,20 +13,14 @@ import { FirestoreNosotrosRepository } from '../../repositories/firestore/nosotr
     './_tablet_nosotros.component.scss'
   ]
 })
-export class NosotrosComponent implements OnInit, OnDestroy{
+export class NosotrosComponent implements OnInit {
   nosotros?: Nosotros;
 
-  private nosotrosRepository = inject(FirestoreNosotrosRepository);
+  private nosotrosService = inject(NosotrosService);
 
-  private sub =  new Subscription();
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
   ngOnInit(): void {
-    this.sub = this.nosotrosRepository.clinets$.subscribe(value => {
-      this.nosotros = value;
-    });
+    this.nosotros = this.nosotrosService.getData();
+
   }
  
 }

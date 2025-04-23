@@ -12,7 +12,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, SpinnerComponent, NgIf],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   title = 'gm-web';
 
   shouldShowSpinner : boolean = true;
-  showData : boolean = false;
 
   private clientService = inject(ClientsService);
   private contactService = inject(ContactService);
@@ -36,7 +35,7 @@ export class AppComponent implements OnInit {
 
   async  ejecutarPromesas() {
     try {
-      const resultados = await Promise.all(
+      await Promise.all(
         [
           this.clientService.fetch(),
           this.contactService.fetch(),
@@ -45,12 +44,9 @@ export class AppComponent implements OnInit {
           this.nosotrosService.fetch()
         ]
       );
-      this.showData = true;
-      setTimeout(()=>this.shouldShowSpinner = false, 1000);
+      this.shouldShowSpinner = false
     } catch (error) {
       console.error('Error en ejecucion de promesas:', error);
     }
   }
-
-
 }

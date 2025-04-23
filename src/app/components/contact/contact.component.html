@@ -1,3 +1,6 @@
-    <p><a (click)="handleContact(contacto.email.url)">{{contacto.email.title}}</a></p>
-    <p><a (click)="handleContact(contacto.instagram.url)">{{contacto.instagram.title}}</a></p>
-    <p><a (click)="handleContact(contacto.whatsApp.url)">{{contacto.whatsApp.title}}</a></p>
+    <ng-container *ngIf="contacto$ |async as contacto">
+        <p><a (click)="handleContact(contacto.email.url)">{{contacto.email.title}}</a></p>
+        <p><a (click)="handleContact(contacto.instagram.url)">{{contacto.instagram.title}}</a></p>
+        <p><a (click)="handleContact(contacto.whatsApp.url)">{{contacto.whatsApp.title}}</a></p>    
+    </ng-container>
+    

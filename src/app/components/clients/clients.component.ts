@@ -1,13 +1,12 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { Clientes } from '../../models/clientes.model';
-import { Subscription } from 'rxjs';
-import { SpinnerService } from '../../services/spinner/spinner.service';
 import { ClientsService } from '../../services/clients/clients.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-clients',
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, AsyncPipe],
   templateUrl: './clients.component.html',
   styleUrls: [
     './_desktop_clients.component.scss',
@@ -16,7 +15,7 @@ import { ClientsService } from '../../services/clients/clients.service';
 })
 export class ClientsComponent implements OnInit {
 
-  clientes?: Clientes;
+  clientes$ !: Observable<Clientes>;
 
   clientsInfo!: String;
 
@@ -24,9 +23,11 @@ export class ClientsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.clientes = this.clientService.getData();
-
-    this.clientsInfo = this.clientService.getData().clients.map(val => val.title).join(", ");
+    this.clientes$ = this.clientService.data$.pipe(
+      tap(value => {
+        this.clientsInfo = value.clients.map(val => val.title).join(", ");
+      })
+    );
   }
 
 }

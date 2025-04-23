@@ -17,20 +17,10 @@
         .content-over-video {
             grid-template-columns: 21% 45% 33%;
 
-            .detalles {
-                :first-child {
-                    width: 100%;
-
-                    &::after {
-                        content: "®";
-
-                    }
-                }
-
-                :last-child {
-                    display: none;
-                }
+            .detalles :last-child {
+                display: none;
             }
+
 
             app-contact {
                 display: none;

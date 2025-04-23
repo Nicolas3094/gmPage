@@ -1,12 +1,28 @@
 import { IRepository } from "../repositories/irepository.interface";
-import { firstValueFrom, Observable } from "rxjs";
+import { BehaviorSubject, filter, firstValueFrom, Observable, shareReplay, take } from "rxjs";
 
 export abstract class FetchService <T> {
     
-    private fetchedObjects?: T[];
-    private fetchedObject?: T;
+    private _list$ = new BehaviorSubject<T[] | undefined>(undefined);
+    private _data$ = new BehaviorSubject<T | undefined >(undefined);
 
     constructor(private repository: IRepository<T>){}
+
+    // Métodos observables que exponen el estado
+    get list$(): Observable<T[]> {
+        return this._list$.asObservable()
+        .pipe(
+            filter(value=>value!=undefined),
+            shareReplay(1) // Para evitar múltiples suscripciones
+        );
+    }
+
+    get data$(): Observable<T> {
+        return this._data$.asObservable().pipe(
+            filter(value=>value!=undefined),
+            shareReplay(1) // Para evitar múltiples suscripciones
+        );
+    }
 
     getAll(): Observable<T[]> {
         return this.repository.getCollection();
@@ -21,25 +37,18 @@ export abstract class FetchService <T> {
     }
 
     async fetch() : Promise<T> {
-        if(this.fetchedObject == undefined) {
-            console.log("is undefined");
-            this.fetchedObject = await firstValueFrom(this.repository.getSingle());
+        if(this._data$.value === undefined) {
+            const data = await firstValueFrom(this.repository.getSingle());
+            this._data$.next(data);
         }
-        return this.fetchedObject;
+        return this._data$.value!;
     }
 
     async fetchAll(): Promise<T[]> {
-        if (this.fetchedObjects == undefined) {
-            this.fetchedObjects = await this.repository.fecthAll();
+        if (this._list$.value === undefined) {
+            const dataArray = await this.repository.fecthAll();
+            this._list$.next(dataArray);
         }
-        return this.fetchedObjects;
-    }
-
-    getList() : T[] {
-        return this.fetchedObjects!;
-    }
-
-    getData() : T {
-        return this.fetchedObject!;
+        return this._list$.value!;
     }
 }

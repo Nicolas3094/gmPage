@@ -1,13 +1,14 @@
 import {  Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { HeaderInfo } from '../../models/header-info.model';
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { ContactComponent } from '../contact/contact.component';
 import { HeaderService } from '../../services/header/header.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [NgFor, RouterModule, NgIf, ContactComponent],
+  imports: [NgFor, RouterModule, NgIf, ContactComponent, AsyncPipe],
   templateUrl: './header.component.html',
   styleUrls: [
     "_desktop_header.component.scss",
@@ -22,18 +23,17 @@ export class HeaderComponent implements OnInit {
   private router = inject(Router);
 
   videoSource?: String;
-  headerInfo !: HeaderInfo;
-  dataLoaded: boolean = false;
+  headerInfo$ !: Observable<HeaderInfo>;
   hasExpanded: boolean = false;
 
   @ViewChild('videoElement') videoRef?: ElementRef;
 
   ngOnInit() {
-    const value = this.heeaderService.getData();
-    this.headerInfo = value;
-    this.videoSource = value.videoPlayBack;
-    this.dataLoaded = true;
+    this.headerInfo$ = this.heeaderService.data$.pipe(
+      tap(value=>this.videoSource = value.videoPlayBack)
+    );
   }
+
   onIndex() {
     console.log("index");
     this.router.navigateByUrl("index");

@@ -1,4 +1,4 @@
-<ng-container *ngIf="clientes">
+<ng-container *ngIf="clientes$ |async as clientes">
     <div class="title">
         <p>{{clientes.title}}</p>
     </div>

@@ -30,13 +30,20 @@ header.video-container-desktop {
         left: 0;
         width: 100%;
         display: grid;
-        grid-template-columns: 14% 66% 15% 5%;
+        grid-template-columns: 12% 68% 15% 5%;
         justify-content: right;
         margin-top: 10px;
 
         .detalles {
             justify-self: left;
             margin-left: 10px;
+
+            :first-child {
+                &::after {
+                    content: "®";
+                    margin-left: -5px;
+                }
+            }
         }
 
         .listado {

@@ -1,4 +1,4 @@
-<ng-container *ngIf="nosotros">
+<ng-container *ngIf="nosotros$ |async as nosotros">
 
     <div class="title">
         <p>{{nosotros.title}}</p>

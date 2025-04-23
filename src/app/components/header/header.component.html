@@ -1,4 +1,4 @@
-<header class="video-container-desktop" *ngIf="dataLoaded">
+<header class="video-container-desktop" *ngIf="headerInfo$ | async as headerInfo">
 
     <img class="video-background" [src]="videoSource" alt="Background GIF" #videoElement>
 

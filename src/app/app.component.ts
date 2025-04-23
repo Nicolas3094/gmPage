@@ -8,7 +8,6 @@ import { ContactService } from './services/contact/contact.service';
 import { HeaderService } from './services/header/header.service';
 import { IndexElementsService } from './services/indexElements/index-elements.service';
 import { NosotrosService } from './services/nosotros/nosotros.service';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit {
 
   title = 'gm-web';
 
-  shouldShowSpinner : boolean = true;
+  shouldShowSpinner: boolean = true;
 
   private clientService = inject(ClientsService);
   private contactService = inject(ContactService);
@@ -33,7 +32,7 @@ export class AppComponent implements OnInit {
     this.ejecutarPromesas();
   }
 
-  async  ejecutarPromesas() {
+  async ejecutarPromesas() {
     try {
       await Promise.all(
         [
@@ -44,7 +43,7 @@ export class AppComponent implements OnInit {
           this.nosotrosService.fetch()
         ]
       );
-      this.shouldShowSpinner = false
+      setTimeout(() => this.shouldShowSpinner = false, Math.random() * 800);
     } catch (error) {
       console.error('Error en ejecucion de promesas:', error);
     }

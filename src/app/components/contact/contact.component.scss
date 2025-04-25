@@ -1,4 +1,10 @@
 :host {
     display: flex;
     flex-direction: column;
+
+    p {
+        word-break: break-word;
+        /* Alternativamente: */
+        overflow-wrap: break-word;
+    }
 }

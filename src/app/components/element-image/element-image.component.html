@@ -1,13 +1,20 @@
-<div class="imageElement" *ngIf="image && !images">
+<div #youtubeContainer class="youtube-container" *ngIf="!image && !images && youtubeUrl">
+    <iframe [src]="safeUrl" frameborder="0" *ngIf="showIframe"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<div class="imageElement" *ngIf="image && !images && !youtubeUrl">
     <img [src]="image">
 </div>
 
-<div class="imagesElement" *ngIf="!image && images">
+<div class="imagesElement" *ngIf="!image && images && !youtubeUrl">
     <div *ngFor="let link of images" class>
         <img [src]="link">
     </div>
 </div>
 
-<ng-container *ngIf="!image && !images">
+<ng-container *ngIf="!image && !images && !youtubeUrl">
     <div class="cuadrado-gris"></div>
 </ng-container>

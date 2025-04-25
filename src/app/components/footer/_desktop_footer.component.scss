@@ -1,4 +1,6 @@
-$border: 0.5mm solid rgba(207, 207, 207, 255);
+@use '../../../styles/variables' as vars;
+
+$border: vars.$border;
 
 footer {
     display: flex;
@@ -20,14 +22,13 @@ footer {
     }
 
     app-nosotros {
-        padding: 10px;
         padding-left: 0px;
         padding-top: 5px;
     }
 
     app-clients {
         border-top: $border;
-        padding: 10px;
+        padding: vars.$default_margin;
         padding-left: 0px;
     }
 }

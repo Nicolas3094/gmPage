@@ -1,10 +1,11 @@
-$border: 0.5mm solid rgba(207, 207, 207, 255);
+@use '../../../styles/variables' as vars;
 
 main {
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-top: 28px;
+    padding-left: vars.$default_margin;
+    padding-right: vars.$default_margin;
 }

@@ -1,39 +1,67 @@
 @use "./_desktop_project-element.component";
 
-@media only screen and (max-device-width: 767px) and ((orientation: portrait) or (orientation: landscape)) {
+@media only screen and (max-device-width: 767px) and (orientation: portrait) {
 
-    a.closeButtonIndex,
-    a.buttonIndex,
-    a.buttonIndexOverflowed {
-        line-height: 1.5;
+    [class*="mobile"] {
+        display: block !important; // Oculta cualquier clase que incluya "mobile"
+    }
 
+    a {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); // Crea 3 columnas de igual tamaño
+        grid-template-columns: 25% 1fr; // Crea 3 columnas de igual tamaño
         grid-template-rows: auto; // Fila automática según el contenido        padding-top: 5px;
-        padding-bottom: 5px;
         width: 100%;
-        
-        .indexTitle{
+        padding: 0;
+        padding-top: 3px;
+        padding-bottom: 2px;
+        .indexTitle {
             grid-column: 1; // Columna 1, Fila 1
             grid-row: 1;
         }
 
         .title {
             grid-column: 2; // Columna 2, Fila 1
-            grid-row: 1;    
+            grid-row: 1;
             width: 250px;
-            padding-left: 10%;
+
+            .collapsible-content {
+
+                .informationShown {
+                    margin: {
+                        top: 10px;
+                        bottom: 10px;
+                    }
+
+                    ;
+                    padding: 0;
+                    padding: 0;
+
+                    .descriptionElement,
+                    .mobileYear,
+                    .mobileAwardWinning {
+                        margin-bottom: 10px;
+                    }
+
+                    .mobileVideo {
+                        text-decoration: underline;
+                    }
+
+                }
+
+            }
         }
 
-        .icon, .icon_collapsed{
+        .icon,
+        .icon_collapsed {
             grid-column: 3; // Columna 3, Fila 1
             grid-row: 1;
-            width: 10%;
         }
 
-        .mobileImage{
+        .mobileImage {
             grid-column: 1 / span 3; // Ocupa 3 columnas (1 a 3), Fila 2
             grid-row: 2;
+            margin-bottom: 10px;
+            margin-top: 10px;
         }
 
         .year,
@@ -41,12 +69,12 @@
             display: none;
         }
 
-        .mobileImage  {
+        .mobileImage {
             display: block;
-            max-width: 60%;
+            max-width: 67%;
             height: auto;
 
-            *{
+            * {
                 width: 100%;
             }
         }
@@ -66,39 +94,7 @@
     .icon_collapsed::after {
         font-size: 9px;
     }
-    
-    a.closeButtonIndex{
-        .title .informationShown {
-            .descriptionElement {
-                margin-top: 10px;
-            }
-            
-            .mobileYear, .mobileVideo, .mobileAwardWinning  {
-                margin-top: 10px;
-                display: block;
-            }
-            
-            .mobileVideo {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    a.buttonIndexOverflowed {
-        max-height: 23px;
-
-        .title p {
-            white-space: wrap;
-            overflow: visible;
-            line-height: 1.5;
-        }
-
-    }
-
-    a.buttonIndex,
-    a.buttonIndexOverflowed {
-        max-height: 7px;
-    }
-
 
 }
+
+

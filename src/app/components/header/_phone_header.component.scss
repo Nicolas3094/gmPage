@@ -2,23 +2,22 @@
 
 
     header.video-container-desktop {
-        height: 100vh;
-        margin-bottom: -75%;
-
-        @media (max-device-width: 375px) {
-            margin-bottom: -65%;
-        }
-
-        .video-background {
-            top: -60px;
-            height: 70%;
-        }
+        position: sticky;
 
         .content-over-video {
-            grid-template-columns: 21% 45% 33%;
+            margin:  8px;
+            grid-template-columns: 25% 60% 15%;
 
+            .detalles {
+                width: 80%;
+            }
             .detalles :last-child {
                 display: none;
+            }
+
+            .logo {
+                width: 40px;
+                height: auto;
             }
 
 
@@ -28,4 +27,7 @@
 
         }
     }
+
+
+
 }

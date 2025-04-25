@@ -1,6 +1,6 @@
 export interface HeaderInfo {
-    detalles:Array<String>;
-    listado:Array<String>;
+    detalles:Array<string>;
+    listado:Array<string>;
     videoPlayBack: string;
 }
 

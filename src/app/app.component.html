@@ -2,4 +2,8 @@
 <router-outlet />
 <app-footer></app-footer>
 
+<ng-container *ngIf="elementReference">
+    <app-scroll-arrow [elementToScroll]="elementReference"></app-scroll-arrow>
+</ng-container>
+
 <app-spinner [isLoading]="shouldShowSpinner"></app-spinner>

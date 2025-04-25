@@ -1,4 +1,13 @@
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+@media only screen and ( (min-width: 768px) and (max-width: 1024px)) and ((orientation: portrait) or (orientation: landscape)) {
 
-    
+    header.video-container-desktop .content-over-video .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    app-contact {
+        display: block;
+        max-width: 70%;
+    }
+
 }

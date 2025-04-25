@@ -1,9 +1,15 @@
-$border: 0.5mm solid rgba(207, 207, 207, 255);
+@use '../../../styles/variables' as vars;
+
+$border: vars.$border;
 $max_height: 10px;
-$max_height_expand: 25px;
+$max_height_expand: auto;
 $max_height_items_expanded: 980px;
 
+[class*="mobile"] {
+    display: none !important; // Oculta cualquier clase que incluya "mobile"
+}
 @mixin setIcon($icon: "") {
+
     align-self: flex-start;
     justify-self: end;
 
@@ -28,14 +34,37 @@ $max_height_items_expanded: 980px;
     overflow-x: hidden;
 }
 
-a.closeButtonIndex,
-a.buttonIndex,
-a.buttonIndexOverflowed {
+a {
+    // Estilos base
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    max-height: auto;
+    
+    // Estado colapsado
+    &:not(.expanded) {
+        max-height: 60px; // Altura mínima
+        
+        .collapsible-content {
+            display: none; // Mejor que opacity para accesibilidad
+        }
+    }
+    
+    // Estado expandido
+    &.expanded {
+        max-height: 1000px; // Valor mayor al contenido máximo
+        
+        .collapsible-content {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+    }
+
     border-top: $border;
     display: grid;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    grid-template-columns: 20% 20% 35% 24% 1%;
+    padding-top: vars.$margin-elements;
+    padding-bottom: vars.$margin-elements;
+    grid-template-columns: vars.$five-columns;
+    align-items: start; // Alinea items al inicio
 
     .year {
         display: flex;
@@ -65,93 +94,30 @@ a.buttonIndexOverflowed {
     }
 
     .title {
+
         display: flex;
         flex-direction: column;
+        max-width: 86%;
+        
+
+        p {
+            line-height: 1.2;
+        }
 
         .informationShown {
+            margin-top: 20px;
+            margin-bottom: 40px;
 
-            .descriptionElement {
-                margin-top: 20px;
+            .descriptionElement{
+                margin-bottom: 20px;
             }
 
-            .imageElement {
+            app-element-image {
                 width: 100%;
-                height: auto;
+                height: 300px;
             }
         }
     }
-
-    .keywords {
-        padding-left: 19%;
-    }
-
-    .mobileImage{
-        display: none;
-    }
-
-}
-
-a.buttonIndex,
-a.buttonIndexOverflowed {
-    max-height: $max_height;
-    transition:
-        max-height 0.3s ease-out;
-
-    .year .videoLink,
-    .title .informationShown {
-        opacity: 0;
-        pointer-events: none;
-        transition:
-            opacity 2s ease-out;
-    }
-
-    .title p {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100%;
-        margin: 0;
-        display: block;
-    }
-
-}
-
-a.buttonIndexOverflowed {
-    max-height: $max_height_expand;
-
-    .title p {
-        white-space: wrap;
-        overflow: visible;
-    }
-
-}
-
-a.closeButtonIndex {
-    max-height: $max_height_items_expanded;
-    transition:
-        max-height 0.3s ease-in;
-
-    .year .videoLink,
-    .title .informationShown {
-        transform: translateY(0);
-        height: auto;
-        opacity: 1;
-        transition:
-            transform 1s ease,
-            opacity 1s ease,
-            height 1s ease;
-    }
-
-    .title {
-        p {
-            overflow: visible;
-            text-overflow: none;
-        }
-    }
-}
-
-.mobileYear, .mobileVideo, .mobileAwardWinning {
-    display: none;
 }
 
 
@@ -162,4 +128,9 @@ a.closeButtonIndex {
 
 .icon_collapsed {
     @include setIcon ("x");
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

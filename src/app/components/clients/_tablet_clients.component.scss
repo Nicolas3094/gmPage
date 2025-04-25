@@ -1,5 +1,14 @@
-@media only screen and ((min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)) {
+@media only screen and (min-device-width : 768px) and ((orientation: portrait) or (orientation: landscape)) {
     :host {
-        grid-template-columns: 20% 0% 80%;
+        display: flex;
+
+        .title{
+            width: 40%;
+        }
+
+        .info{
+            width: 60%;
+        }
     }
+
 }

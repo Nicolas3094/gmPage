@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProjectElementComponent } from './project-element.component';
 
-describe('ProjectElementComponent', () => {
-  let component: ProjectElementComponent;
-  let fixture: ComponentFixture<ProjectElementComponent>;
+import { ScrollArrowComponent } from './scroll-arrow.component';
+
+describe('ScrollArrowComponent', () => {
+  let component: ScrollArrowComponent;
+  let fixture: ComponentFixture<ScrollArrowComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProjectElementComponent]
+      imports: [ScrollArrowComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProjectElementComponent);
+    fixture = TestBed.createComponent(ScrollArrowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

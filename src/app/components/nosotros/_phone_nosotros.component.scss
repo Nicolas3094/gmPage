@@ -28,3 +28,34 @@
         }
     }
 }
+@media only screen and (max-device-width: 932px) and (max-device-height: 500px) and (orientation: landscape) {
+    :host {
+        display: flex;
+
+        .contactDevice app-contact {
+            display: block;
+            padding-top: 10px;
+        }
+
+        .title {
+            justify-self: start;
+            width: 25%;
+
+            :last-child {
+                display: none;
+            }
+        }
+
+        app-contact {
+            display: none;
+        }
+
+        .descripcion {
+            width: 100%;
+
+            padding: 0;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+    }
+}

@@ -1,7 +1,4 @@
 <header class="video-container-desktop" *ngIf="headerInfo$ | async as headerInfo">
-
-    <img class="video-background" [src]="videoSource" alt="Background GIF" #videoElement>
-
     <div class="content-over-video">
 
         <div class="detalles">
@@ -10,18 +7,23 @@
             </p>
         </div>
 
-        <div class="listado">
-            <p *ngFor="let listado of headerInfo.listado">
-                {{listado}}
-            </p>
+        <div class="listado" *ngIf="menu$ |async as menuList">
+
+            <ng-container *ngFor="let listado of headerInfo.listado; let i = index">
+                <a class="menuElement" (click)="handleElementMenu(menuList[i])">
+                    <p> {{listado}}</p>
+                </a>
+            </ng-container>
+           
+          
         </div>
 
         <app-contact></app-contact>
 
         <div class="logo">
-            <img
-                src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">
+            <img src="https://firebasestorage.googleapis.com/v0/b/gmapp-f6d70.firebasestorage.app/o/logo.png?alt=media&token=e25e6eb8-f15c-43fe-a6ee-1f0b7a708a2a">
         </div>
     </div>
-
 </header>
+
+<img class="video-background" [src]="videoSource" alt="Background GIF" #videoElement>

@@ -1,15 +1,21 @@
 import { inject, Injectable } from '@angular/core';
-import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
+import { forkJoin, from, lastValueFrom, map, Observable, switchMap } from 'rxjs';
 import {  DocumentData } from '@angular/fire/firestore';
 import { FirestoreLinkInfoRepository } from '../linkInfo/firestore-link-info.repositoy';
 import { FirestoreRepository } from '../firedata.repository';
 import { Clientes, FirestoreClientes } from '../../../models/clientes.model';
 import { Linkinfo } from '../../../models/linkinfo.model';
+import { FireStorageRepository } from '../../firestorage/fire-storage.repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreClientsRepository extends FirestoreRepository<Clientes, FirestoreClientes> {
+
+  private readonly linkService = inject(FirestoreLinkInfoRepository);
+
+  private readonly storage = inject(FireStorageRepository);
+
 
   override getColection(): Observable<Clientes[]> {
     return this.clinets$.pipe(map(cliente => [cliente]));
@@ -18,9 +24,6 @@ export class FirestoreClientsRepository extends FirestoreRepository<Clientes, Fi
   override getSingle() : Observable<Clientes> {
     return this.clinets$;
   }
-
-  private readonly linkService = inject(FirestoreLinkInfoRepository);
-
   protected override converter = {
     toFirestore(clientes: FirestoreClientes): DocumentData {
       return {
@@ -41,31 +44,29 @@ export class FirestoreClientsRepository extends FirestoreRepository<Clientes, Fi
     super("clients");
   }
 
-  protected override async convertToOrigin(firestoreObjet: FirestoreClientes): Promise<Clientes> {
-    let clientsArr: Array<Linkinfo> = [];
-
-    for (let i = 0; i < firestoreObjet.clients.length; i++) {
-      const client = await this.linkService.getByDocumentId(firestoreObjet.clients[i].id);
-      clientsArr.push(client);
-    }
-
-    return {
-      title: firestoreObjet.title,
-      clients: clientsArr
-    } as Clientes;
-  }
-
   get clinets$(): Observable<Clientes> {
     return this.getFirst()
       .pipe(
         switchMap(firestoreClientes => {
-          // Convertimos todas las promesas en observables
-          let linksData: Array<Observable<Linkinfo>> = [];
-          for (let i = 0; i < firestoreClientes.clients.length; i++) {
-            linksData.push(from(this.linkService.getByDocumentId(firestoreClientes.clients[i].id)));
-          }
+          // Convertimos todas las promesas en observables y procesamos las URLs
+          const linksData$ = firestoreClientes.clients.map(clientRef => 
+            from(this.linkService.getByDocumentId(clientRef.id)).pipe(
+              switchMap(linkInfo => {
+                if (linkInfo.url) {
+                  return this.storage.getDownloadUrl(linkInfo.url).pipe(
+                    map(downloadUrl => ({
+                      ...linkInfo,
+                      url: downloadUrl
+                    }))
+                  );
+                }
+                return [linkInfo];
+              })
+            )
+          );
+          
           // Combinamos todos los observables
-          return forkJoin(linksData).pipe(
+          return forkJoin(linksData$).pipe(
             map((linksData) => ({
               title: firestoreClientes.title,
               clients: linksData

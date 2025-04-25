@@ -1,0 +1,14 @@
+$default_margin: 10px;
+$border: 0.5mm solid rgba(207, 207, 207, 255);
+$five-columns: 20% 20% 40% 19% 1%;
+$nosotros-columns: 20% 20% 60%;
+$margin-elements: 5px;
+
+//phone
+@media only screen and (max-device-width: 767px) and (orientation: portrait) {
+
+}
+//Tablet
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    $margin-elements: 0px;
+}

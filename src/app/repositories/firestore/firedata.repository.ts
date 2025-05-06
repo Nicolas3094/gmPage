@@ -35,7 +35,7 @@ export abstract class FirestoreRepository<T, D> implements IRepository<T> {
       }
     }
 
-    throw Error("No existe documento.");
+    throw Error(`No existe documento ${docId} en ${this.name}`);
   }
   protected convertToOrigin(firestoreObjet: D): Promise<T> | undefined {
     return undefined;

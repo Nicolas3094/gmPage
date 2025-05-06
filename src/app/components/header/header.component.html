@@ -7,15 +7,14 @@
             </p>
         </div>
 
-        <div class="listado" *ngIf="menu$ |async as menuList">
+        <div class="listado">
 
             <ng-container *ngFor="let listado of headerInfo.listado; let i = index">
                 <a class="menuElement" (click)="handleElementMenu(menuList[i])">
                     <p> {{listado}}</p>
                 </a>
             </ng-container>
-           
-          
+            
         </div>
 
         <app-contact></app-contact>

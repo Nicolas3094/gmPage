@@ -1,5 +1,6 @@
-@media only screen and ( (min-width: 768px) and (max-width: 1024px)) and ((orientation: portrait) or (orientation: landscape)) {
+@use "../../../styles/mixins" as mx;
 
+@include mx.tablet(){
     header.video-container-desktop .content-over-video .logo {
         width: 40px;
         height: 40px;
@@ -9,5 +10,5 @@
         display: block;
         max-width: 70%;
     }
-
 }
+

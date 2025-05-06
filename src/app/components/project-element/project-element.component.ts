@@ -1,10 +1,9 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IndexElement } from '../../models/index-element.model';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { FormattedLinkComponent } from '../formatted-link/formatted-link.component';
 import { ElementImageComponent } from '../element-image/element-image.component';
 import { ExpandElementService } from '../../services/expand/expand-element.service';
-import { ExpandedObject } from '../../models/ExpandendObject.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 const youtubeUrlRegex = /^(https:\/\/)(www\.youtube\.com\/watch\?)(v=.+)$/;
@@ -80,5 +79,18 @@ export class ProjectElementComponent implements OnInit {
     if (url) {
       window.open(url!, '_blank');
     }
+  }
+
+  checkIfShort(projectElement : IndexElement) : boolean {
+    if( projectElement.index.includes('A')){
+      return true;
+    }
+    if (projectElement.index.includes('B') && projectElement.index !== 'B.1'){
+      return true;
+    }
+    if(projectElement.index === "C.1" || projectElement.index === "C.2"){
+      return true;
+    }
+    return false;
   }
 }

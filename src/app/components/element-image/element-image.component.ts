@@ -14,6 +14,8 @@ export class ElementImageComponent implements AfterViewInit {
   @Input() image?: string;
   @Input() images?: Array<string>;
   @Input() youtubeUrl?: string;
+  @Input() isShort : boolean = false;
+
   @ViewChild('youtubeContainer') youtubeContainer!: ElementRef;
 
   videoService : VideoPlatformService = inject(VideoPlatformService);
@@ -48,12 +50,13 @@ export class ElementImageComponent implements AfterViewInit {
       const videoId = this.extractYoutubeId(this.youtubeUrl!);
       if (videoId) {
         this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-          `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&enablejsapi=1`
+          `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&playsinline=1&enablejsapi=1`
         );
+        
         this.showIframe = true;
       }
     }else{
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`${this.youtubeUrl!}?autoplay=1&muted=1&background=0&autopause=0`);
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`${this.youtubeUrl!}?autoplay=1&muted=0&background=0&autopause=0`);
       this.showIframe = true;
     }
   

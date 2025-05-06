@@ -1,4 +1,6 @@
-@media only screen and (max-device-width: 767px) and (orientation: portrait) {
+@use "../../../styles/mixins" as mx;
+
+@include mx.mobile() {
     main {
         margin-top: 15px;
     }

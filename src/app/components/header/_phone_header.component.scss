@@ -1,7 +1,8 @@
-@media only screen and (max-device-width: 767px) and ((orientation: portrait) or (orientation: landscape)) {
+@use "../../../styles/mixins" as mx;
 
-
+@include mx.mobile() {
     header.video-container-desktop {
+
         position: sticky;
 
         .content-over-video {
@@ -27,7 +28,29 @@
 
         }
     }
+}
+
+@include mx.mobile("landscape") {
+    header.video-container-desktop {
+        
+        .content-over-video {
+            grid-template-columns: 25% 60% 15%;
+
+            .detalles {
+                font-size: 14px !important;
+            }
+
+            .detalles :last-child {
+                display: none;
+            }
+
+            .logo {
+                width: 70px !important;
+                height: 70px !important;
+                height: auto;
+            }
 
 
-
+        }
+    }
 }

@@ -1,8 +1,23 @@
 <div #youtubeContainer class="youtube-container" *ngIf="!image && !images && youtubeUrl">
-    <iframe [src]="safeUrl" frameborder="0" *ngIf="showIframe"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
+
+    <ng-container *ngIf="isShort; else noShort">
+        <div class="shortVideo">
+            <iframe class="youtubeShort"
+            width="100%" 
+            height="100%" 
+            [src]="safeUrl" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            frameborder="0" 
+            allowfullscreen></iframe>
+        </div>
+    </ng-container>
+    
+    <ng-template #noShort>
+        <iframe class="youtubeVideo" [src]="safeUrl" frameborder="0" *ngIf="showIframe"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </ng-template>
 </div>
 
 <div class="imageElement" *ngIf="image && !images && !youtubeUrl">

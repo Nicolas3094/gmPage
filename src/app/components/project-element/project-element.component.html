@@ -69,7 +69,8 @@
 
                 <app-element-image 
                     *ngIf="expand"
-                [youtubeUrl]="projectElement.url"></app-element-image>
+                [youtubeUrl]="projectElement.url"
+                [isShort]="checkIfShort(projectElement)"></app-element-image>
 
             </div>
         </div>
@@ -84,7 +85,8 @@
     <div [ngClass]="{'icon': !expand, 'icon_collapsed' : expand}"></div>
 
     <div class="mobileImage"  *ngIf="expand">
-        <app-element-image [youtubeUrl]="projectElement.url"></app-element-image>
+        <app-element-image [youtubeUrl]="projectElement.url"
+        [isShort]="checkIfShort(projectElement)"></app-element-image>
     </div>
 
 </a>

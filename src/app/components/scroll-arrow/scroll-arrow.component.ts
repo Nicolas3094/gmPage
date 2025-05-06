@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, inject, Input, OnInit } from '@angular/core';
-import { ExpandElementService } from '../../../services/expand/expand-element.service';
+import { ExpandElementService } from '../../services/expand/expand-element.service';
 
 
 @Component({

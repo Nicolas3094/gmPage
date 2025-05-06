@@ -1,10 +1,13 @@
+@use "./styles/mixins" as mx;
+
 @font-face {
-  font-family: 'Ingram Mono Regular';
-  src: url("../public/Ingram-Mono-Regular.otf") format('truetype');
+    font-family: 'Ingram Mono Regular';
+    src: url("../public/Ingram-Mono-Regular.otf") format('truetype');
 }
 
 
-p, body{
+p,
+body {
     margin: 0;
     padding: 0;
 }
@@ -22,31 +25,26 @@ body {
     font-size: 12px;
     font-family: 'Ingram Mono Regular', sans-serif;
     text-transform: uppercase;
-    font-weight: 100; /* Peso light (300 es light, 400 normal, 700 bold) */
-    letter-spacing: 2px; /* Espaciado entre letras */
-
+    font-weight: 100;
+    /* Peso light (300 es light, 400 normal, 700 bold) */
+    letter-spacing: 2px;
+    /* Espaciado entre letras */
 }
-//phone portrait
-@media only screen and (max-device-width: 767px) and (orientation: portrait) {
-    body{
-        font-size: 9px;
-        letter-spacing: 0.5px; /* Espaciado entre letras */
+
+@include mx.mobile() {
+    body {
+        font-size: 9px !important;
+        letter-spacing: 0.5px;
+        /* Espaciado entre letras */
     }
 }
 
-//phone landscape
-@media only screen and (max-device-width: 932px) and (max-device-height: 500px) and (orientation: landscape) {
-    body{
-        font-size: 10px;
-        letter-spacing: 0.5px; /* Espaciado entre letras */
-    }
-}
 
-//Tablet
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-    body{
-        font-size:11px;
-        letter-spacing: 1px; /* Espaciado entre letras */
+@include mx.tablet() {
+    body {
+        font-size: 11px;
+        letter-spacing: 1px;
+        /* Espaciado entre letras */
     }
 }
 

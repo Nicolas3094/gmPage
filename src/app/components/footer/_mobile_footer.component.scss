@@ -1,21 +1,23 @@
-$border: 0.5mm solid rgba(207, 207, 207, 255);
+@use "../../../styles/mixins" as mx;
 
-@media (max-device-width: 767px) or ((max-device-height: 767px)) {
+@include mx.mobile() {
     footer {
         padding-bottom: 20px;
+
         app-nosotros {
             padding: 5px;
             padding-left: 0px;
             grid-template-columns: 26% 1fr;
-            
-            .contactDevice{
+
+            .contactDevice {
                 display: block;
             }
+
             .title {
                 justify-self: start;
                 width: 60%;
 
-                :last-child{
+                :last-child {
                     display: none;
                 }
             }
@@ -35,8 +37,8 @@ $border: 0.5mm solid rgba(207, 207, 207, 255);
             padding: 5px;
             padding-top: 50;
             grid-template-columns: 25% 75%;
-            
-            .empty{
+
+            .empty {
                 display: none;
             }
 

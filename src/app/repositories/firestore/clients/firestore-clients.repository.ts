@@ -1,10 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { forkJoin, from, lastValueFrom, map, Observable, switchMap } from 'rxjs';
+import { forkJoin, from, map, Observable, switchMap } from 'rxjs';
 import {  DocumentData } from '@angular/fire/firestore';
 import { FirestoreLinkInfoRepository } from '../linkInfo/firestore-link-info.repositoy';
 import { FirestoreRepository } from '../firedata.repository';
 import { Clientes, FirestoreClientes } from '../../../models/clientes.model';
-import { Linkinfo } from '../../../models/linkinfo.model';
 import { FireStorageRepository } from '../../firestorage/fire-storage.repository';
 
 @Injectable({

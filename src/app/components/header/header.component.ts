@@ -1,10 +1,10 @@
-import {  AfterContentInit, AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {  AfterContentInit, AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HeaderInfo } from '../../models/header-info.model';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { ContactComponent } from '../contact/contact.component';
 import { HeaderService } from '../../services/header/header.service';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { ExpandElementService } from '../../services/expand/expand-element.service';
 
 @Component({
@@ -18,17 +18,19 @@ import { ExpandElementService } from '../../services/expand/expand-element.servi
   ]
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  
 
 
   private heeaderService = inject(HeaderService);
   private router = inject(Router);
   private expandElementService = inject(ExpandElementService);
-
+  private subscription : Subscription = new Subscription();
 
   videoSource?: String;
   headerInfo$ !: Observable<HeaderInfo>;
-  menu$!:Observable<ElementRef[]>;
+
+  menuList !: ElementRef[];
   hasExpanded: boolean = false;
 
   @ViewChild('videoElement') videoRef?: ElementRef;
@@ -38,7 +40,11 @@ export class HeaderComponent implements OnInit {
       tap(value=>this.videoSource = value.videoPlayBack)
     );
     
-    this.menu$ = this.heeaderService.getMenuRefs$;
+    this.subscription = this.heeaderService.getMenuRefs$.subscribe(value => this.menuList = value);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   onIndex() {

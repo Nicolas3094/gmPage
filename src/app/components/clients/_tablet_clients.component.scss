@@ -1,4 +1,7 @@
-@media only screen and (min-device-width : 768px) and ((orientation: portrait) or (orientation: landscape)) {
+@use "../../../styles/mixins" as mx;
+
+
+@include mx.tablet() {
     :host {
         display: flex;
 

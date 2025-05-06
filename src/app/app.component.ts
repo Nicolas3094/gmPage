@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -8,10 +8,8 @@ import { ContactService } from './services/contact/contact.service';
 import { HeaderService } from './services/header/header.service';
 import { IndexElementsService } from './services/indexElements/index-elements.service';
 import { NosotrosService } from './services/nosotros/nosotros.service';
-import { ScrollArrowComponent } from './components/scroll-arrwow/scroll-arrow/scroll-arrow.component';
-import { firstValueFrom, lastValueFrom, map } from 'rxjs';
 import { NgIf } from '@angular/common';
-import { FireStorageRepository } from './repositories/firestorage/fire-storage.repository';
+import { ScrollArrowComponent } from './components/scroll-arrow/scroll-arrow.component';
 
 @Component({
   selector: 'app-root',
@@ -39,12 +37,13 @@ export class AppComponent implements OnInit {
   private indexService = inject(IndexElementsService);
   private nosotrosService = inject(NosotrosService);
 
-
   ngOnInit(): void {
     this.ejecutarPromesas();
 
     this.headerService.getMenuRefs$.subscribe(refList => {
-      this.elementReference = refList[0];
+      setTimeout(() => {
+        this.elementReference = refList[0];
+      });
     })
   }
 

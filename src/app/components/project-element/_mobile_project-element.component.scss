@@ -1,19 +1,18 @@
 @use "./_desktop_project-element.component";
+@use "../../../styles/mixins" as mx;
 
-@media only screen and (max-device-width: 767px) and (orientation: portrait) {
 
-    [class*="mobile"] {
-        display: block !important; // Oculta cualquier clase que incluya "mobile"
-    }
+@include mx.mobile() {
 
     a {
         display: grid;
-        grid-template-columns: 25% 1fr; // Crea 3 columnas de igual tamaño
-        grid-template-rows: auto; // Fila automática según el contenido        padding-top: 5px;
+        grid-template-columns: 25% 1fr;
+        grid-template-rows: auto;
         width: 100%;
         padding: 0;
         padding-top: 3px;
         padding-bottom: 2px;
+
         .indexTitle {
             grid-column: 1; // Columna 1, Fila 1
             grid-row: 1;
@@ -22,7 +21,7 @@
         .title {
             grid-column: 2; // Columna 2, Fila 1
             grid-row: 1;
-            width: 250px;
+            width: 100%;
 
             .collapsible-content {
 
@@ -60,8 +59,14 @@
         .mobileImage {
             grid-column: 1 / span 3; // Ocupa 3 columnas (1 a 3), Fila 2
             grid-row: 2;
-            margin-bottom: 10px;
-            margin-top: 10px;
+            flex: 1;
+            align-self: center;
+            justify-self: center;
+
+            app-element-image {
+                width: 100%;
+            }
+
         }
 
         .year,
@@ -97,4 +102,15 @@
 
 }
 
+@include mx.mobile("landscape") {
+    .indexTitle {
+        font-size: 14px !important;
+    }
 
+    .icon,
+    .icon_collapsed {
+        &::after {
+            font-size: 14px;
+        }
+    }
+}

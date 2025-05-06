@@ -1,6 +1,8 @@
 <main class="mainIndex" *ngIf=" indexArray$ | async as indexArray">
     <ng-container *ngFor="let indexElem of indexArray; let i = index">
-        <app-project-element [projectElement]="indexElem" [expand]="expandedIndex === i"
-            (sendProject)="toggleExpand($event)"></app-project-element>
+        <app-project-element 
+        [projectElement]="indexElem" 
+        [isShort]=" indexElem.index == 'A.1'"
+        (sendProject)="toggleExpand($event)"></app-project-element>
     </ng-container>
 </main>

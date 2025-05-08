@@ -5,6 +5,7 @@
         grid-template-columns: 23% 77%;
         max-width: 100%;
         display: grid;
+
         .empty {
             display: none;
         }
@@ -23,21 +24,22 @@
 
 @include mx.mobile("landscape") {
     :host {
+        display: flex !important;
         font-size: 14px;
-        display: flex;
 
         .title {
-            width: 31%;
+            width: 23% !important;
         }
 
         .info {
-            width: 100%;
-
-            .clientImages img {
-                max-height: 75px;
-                max-width: 90px;
-            }
+            width: 77% !important;;
         }
+
+        .info .clientImages img {
+            max-height: 75px;
+            max-width: 90px;
+        }
+
     }
 
 }
